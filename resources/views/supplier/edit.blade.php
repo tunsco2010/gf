@@ -2,23 +2,28 @@
 
 @section('title')
 
-    <title>Create a Supplier</title>
+    <title>Edit Supplier</title>
 
 @endsection
 
 @section('content')
 
+
     <ol class='breadcrumb'>
         <li><a href='/'>Home</a></li>
         <li><a href='/supplier'>Suppliers</a></li>
-        <li class='active'>Create</li>
+        <li><a href='/supplier/{{$supplier->id}}'>{{$supplier->name}}</a></li>
+        <li class='active'>Edit</li>
     </ol>
 
-    <h2>Create a New Supplier</h2>
+    <h1>Edit Supplier</h1>
 
     <hr/>
 
-    <form class="form" role="form" method="POST" action="{{ url('/supplier') }}">
+
+    <form class="form" role="form" method="POST" action="{{ url('/supplier/'. $supplier->id) }}">
+
+    {{ method_field('PATCH') }}
 
     {{ csrf_field() }}
 
@@ -28,7 +33,7 @@
 
             <label class="control-label">Contact Person</label>
 
-            <input type="text" class="form-control" name="name" value="{{ old('name') }}">
+            <input type="text" class="form-control" name="name" value="{{ $supplier->name }}">
 
             @if ($errors->has('name'))
 
@@ -46,7 +51,7 @@
 
             <label class="control-label">Company Name</label>
 
-            <input type="text" class="form-control" name="company_name" value="{{ old('company_name') }}">
+            <input type="text" class="form-control" name="company_name" value="{{ $supplier->company_name }}">
 
             @if ($errors->has('company_name'))
 
@@ -65,7 +70,7 @@
 
             <label class="control-label">Email</label>
 
-            <input type="email" class="form-control" name="email" value="{{ old('email') }}">
+            <input type="email" class="form-control" name="email" value="{{ $supplier->email }}">
 
             @if ($errors->has('email'))
 
@@ -84,7 +89,7 @@
 
             <label class="control-label">Phone</label>
 
-            <input type="text" class="form-control" name="phone" value="{{ old('phone') }}">
+            <input type="text" class="form-control" name="phone" value="{{ $supplier->phone }}">
 
             @if ($errors->has('phone'))
 
@@ -104,7 +109,7 @@
             <label class="control-label">Address</label>
 
             <textarea class="form-control" name="address" >
-                    {{ old('address') }}
+                    {{ $supplier->address }}
             </textarea>
 
             @if ($errors->has('address'))
@@ -124,12 +129,14 @@
 
             <button type="submit" class="btn btn-primary btn-lg">
 
-                Create
+                Edit
 
             </button>
 
         </div>
 
     </form>
+
+
 
 @endsection

@@ -14,6 +14,6 @@
 
         @endif
 
-        Sample Project All rights Reserved.</p>
+        God's Finger Farm All rights Reserved.</p>
 
 </div>

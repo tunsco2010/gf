@@ -17,6 +17,7 @@ class CreateOrdersTable extends Migration
             $table->increments('id');
             $table->text('description');
             $table->decimal('total_cost');
+            $table->string('slug')->unique();
             $table->decimal('discount')->nullable();
             $table->decimal('vat')->nullable();
             $table->integer('customer_id')->unsigned();
