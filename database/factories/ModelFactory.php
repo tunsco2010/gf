@@ -39,9 +39,12 @@ $factory->define(App\Supplier::class, function (Faker\Generator $faker) {
 
 $factory->define(App\Customer::class, function (Faker\Generator $faker) {
 
+    $email = $faker->unique()->email;
+
     return [
         'name' => $faker->name,
-        'email' => $faker->unique()->email,
+        'slug' => str_slug($email, "-"),
+        'email' => $email,
         'phone' => $faker->unique()->phoneNumber,
         'address' => $faker->address
     ];

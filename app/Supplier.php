@@ -3,7 +3,6 @@
 namespace App;
 
 use Carbon\Carbon;
-use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\SoftDeletes;
 
 class Supplier extends SuperModel
@@ -22,13 +21,7 @@ class Supplier extends SuperModel
         'phone',
         'address'
     ];
-
-    // Accessors and Mutators
-    public function getCreatedAtAttribute($value)
-    {
-        return Carbon::parse($value)->format('m-d-Y');
-    }
-
+    
 
 
     // Relationships

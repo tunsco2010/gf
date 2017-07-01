@@ -23,6 +23,7 @@
                                         aria-expanded="false">Manage Farm<span class="caret"></span></a>
                     <ul class="dropdown-menu">
                         <li><a href="/supplier">Suppliers</a></li>
+                        <li><a href="/customer">Customers</a></li>
                     </ul>
                 </li>
                 @if (Auth::check())
