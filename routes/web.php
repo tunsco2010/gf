@@ -1,19 +1,14 @@
 <?php
 
-Route::get('/', function () {
-    return view('welcome');
-});
-
 Auth::routes();
 
-Route::get('/home', 'HomeController@index')->name('home');
+// home page route
+Route::get('/', 'PagesController@index');
 
-
+// Supplier Routes
 Route::resource('suppliers', 'SupplierController');
 Route::get('api/suppliers-data', 'ApiController@index');
 
 
-
-Route::resource('customers', 'CustomerController');
-
-Route::resource('products', 'ProductController');
+//test route
+Route::get('test', 'TestController@index');
