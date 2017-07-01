@@ -20,9 +20,9 @@
                 <li><a href="#about">About</a></li>
                 <li class="dropdown"><a href="#" class="dropdown-toggle"
                                         data-toggle="dropdown" role="button" aria-haspopup="true"
-                                        aria-expanded="false">Content <span class="caret"></span></a>
+                                        aria-expanded="false">Manage Farm<span class="caret"></span></a>
                     <ul class="dropdown-menu">
-                        <li><a href="/widget">Widgets</a></li>
+                        <li><a href="/supplier">Suppliers</a></li>
                     </ul>
                 </li>
                 @if (Auth::check())
