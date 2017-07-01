@@ -1,7 +1,4 @@
 <template>
-<div>
-    <h2>Suppliers</h2>
-    <hr>
     <div class="row">
         <div class="col-lg-12">
             <form id="search">
@@ -88,8 +85,6 @@
             </div>
         </div>
     </div>
-
-</div>
 
 
 </template>

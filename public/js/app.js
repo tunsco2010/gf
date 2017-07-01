@@ -1741,11 +1741,6 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 //
 //
 //
-//
-//
-//
-//
-//
 
 /* harmony default export */ __webpack_exports__["default"] = ({
     mounted: function mounted() {
@@ -31963,7 +31958,7 @@ if (false) {
 /***/ (function(module, exports, __webpack_require__) {
 
 module.exports={render:function (){var _vm=this;var _h=_vm.$createElement;var _c=_vm._self._c||_h;
-  return _c('div', [_c('h2', [_vm._v("Suppliers")]), _vm._v(" "), _c('hr'), _vm._v(" "), _c('div', {
+  return _c('div', {
     staticClass: "row"
   }, [_c('div', {
     staticClass: "col-lg-12"
@@ -31971,7 +31966,7 @@ module.exports={render:function (){var _vm=this;var _h=_vm.$createElement;var _c
     attrs: {
       "id": "search"
     }
-  }, [_vm._v("\n                Search "), _c('input', {
+  }, [_vm._v("\n            Search "), _c('input', {
     directives: [{
       name: "model",
       rawName: "v-model",
@@ -31995,7 +31990,7 @@ module.exports={render:function (){var _vm=this;var _h=_vm.$createElement;var _c
     }
   })]), _vm._v(" "), _c('div', {
     staticClass: "pull-right"
-  }, [_vm._v("\n                " + _vm._s(_vm.total) + " Total Results\n            ")]), _vm._v(" "), _c('section', {
+  }, [_vm._v("\n            " + _vm._s(_vm.total) + " Total Results\n        ")]), _vm._v(" "), _c('section', {
     staticClass: "panel"
   }, [_c('div', {
     staticClass: "panel-body"
@@ -32011,16 +32006,16 @@ module.exports={render:function (){var _vm=this;var _h=_vm.$createElement;var _c
           _vm.sortBy(key)
         }
       }
-    }, [_vm._v("\n                                " + _vm._s(key) + "\n                                "), _c('span', {
+    }, [_vm._v("\n                            " + _vm._s(key) + "\n                            "), _c('span', {
       staticClass: "arrow",
       class: _vm.sortOrder > 0 ? 'asc' : 'dsc'
     })])
   }), _vm._v(" "), _c('th', [_vm._v("Actions")])], 2)]), _vm._v(" "), _c('tbody', _vm._l((_vm.gridData), function(row) {
-    return _c('tr', [_c('td', [_vm._v("\n                                " + _vm._s(row.Id) + "\n                            ")]), _vm._v(" "), _c('td', [_vm._v("\n                                " + _vm._s(row.Name) + "\n                            ")]), _vm._v(" "), _c('td', [_c('a', {
+    return _c('tr', [_c('td', [_vm._v("\n                            " + _vm._s(row.Id) + "\n                        ")]), _vm._v(" "), _c('td', [_vm._v("\n                            " + _vm._s(row.Name) + "\n                        ")]), _vm._v(" "), _c('td', [_c('a', {
       attrs: {
         "href": '/supplier/' + row.Id + '-' + row.Slug
       }
-    }, [_vm._v(" " + _vm._s(row.Company))])]), _vm._v(" "), _c('td', [_vm._v("\n                                " + _vm._s(row.Created) + "\n                            ")]), _vm._v(" "), _c('td', [_c('a', {
+    }, [_vm._v(" " + _vm._s(row.Company))])]), _vm._v(" "), _c('td', [_vm._v("\n                            " + _vm._s(row.Created) + "\n                        ")]), _vm._v(" "), _c('td', [_c('a', {
       attrs: {
         "href": '/supplier/' + row.Id + '/edit'
       }
@@ -32029,10 +32024,10 @@ module.exports={render:function (){var _vm=this;var _h=_vm.$createElement;var _c
       attrs: {
         "type": "button"
       }
-    }, [_vm._v("\n                                    Edit\n                                ")])])])])
+    }, [_vm._v("\n                                Edit\n                            ")])])])])
   }))])]), _vm._v(" "), _c('div', {
     staticClass: "pull-right"
-  }, [_vm._v("\n\n                    page " + _vm._s(_vm.current_page) + " of   " + _vm._s(_vm.last_page) + " pages\n                ")])]), _vm._v(" "), _c('div', {
+  }, [_vm._v("\n\n                page " + _vm._s(_vm.current_page) + " of   " + _vm._s(_vm.last_page) + " pages\n            ")])]), _vm._v(" "), _c('div', {
     staticClass: "row"
   }, [_c('div', {
     staticClass: "pull-right for-page-button"
@@ -32043,7 +32038,7 @@ module.exports={render:function (){var _vm=this;var _h=_vm.$createElement;var _c
         _vm.getData(_vm.go_to_page)
       }
     }
-  }, [_vm._v("\n                        Go To Page:\n                    ")]), _vm._v(" "), _c('input', {
+  }, [_vm._v("\n                    Go To Page:\n                ")]), _vm._v(" "), _c('input', {
     directives: [{
       name: "model",
       rawName: "v-model",
@@ -32103,7 +32098,7 @@ module.exports={render:function (){var _vm=this;var _h=_vm.$createElement;var _c
         _vm.getData(_vm.last_page_url)
       }
     }
-  }, [_vm._v(" last ")])])], 2)])])])])
+  }, [_vm._v(" last ")])])], 2)])])])
 },staticRenderFns: []}
 module.exports.render._withStripped = true
 if (false) {
