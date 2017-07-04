@@ -26,8 +26,10 @@ class AddOrderProductRelation extends Migration
      */
     public function down()
     {
-        Schema::table('order_product', function (Blueprint $table) {
-            $table->dropForeign(['product_id', 'order_id']);
-        });
+//        Schema::table('order_product', function (Blueprint $table) {
+//            $table->dropForeign(['product_id', 'order_id']);
+//        });
+
+        Schema::dropIfExists('order_product');
     }
 }

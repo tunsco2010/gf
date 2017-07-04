@@ -19,6 +19,7 @@ require('vue-resource');
 Vue.component('example', require('./components/Example.vue'));
 Vue.component('supplier-grid', require('./components/SupplierGrid.vue'));
 Vue.component('customer-grid', require('./components/CustomerGrid.vue'));
+Vue.component('product-grid', require('./components/ProductGrid.vue'));
 
 const app = new Vue({
     el: '#app'

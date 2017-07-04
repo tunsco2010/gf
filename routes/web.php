@@ -20,5 +20,13 @@ Route::resource('customer', 'CustomerController', ['except' => ['show', 'create'
 Route::get('api/customers-data', 'ApiController@customersIndex');
 
 
+// Product Routes
+Route::get('product/create', 'ProductController@create')->name('product.create');
+Route::get('product/{product}-{slug?}', 'ProductController@show')->name('product.show');
+
+Route::resource('product', 'ProductController', ['except' => ['show', 'create']]);
+Route::get('api/products-data', 'ApiController@productsIndex');
+
+
 //test route
 Route::get('test', 'TestController@index');

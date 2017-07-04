@@ -17,7 +17,8 @@ class SupplierQuery implements DataQuery
             'slug as Slug',
             'email as Email',
             'phone as Phone',
-            DB::raw('DATE_FORMAT(created_at, "%m-%d-%Y") as Created'))
+            'created_at as Created')
+//            DB::raw('DATE_FORMAT(created_at, "%m-%d-%Y") as Created'))
             ->orderBy($column, $direction)
             ->paginate(10);
 

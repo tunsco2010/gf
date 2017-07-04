@@ -27,8 +27,10 @@ class AddProductSupplyRelation extends Migration
      */
     public function down()
     {
-        Schema::table('products_supply', function (Blueprint $table) {
-            $table->dropForeign(['product_id', 'supplier_id']);
-        });
+//        Schema::table('products_supply', function (Blueprint $table) {
+//            $table->dropForeign(['product_id', 'supplier_id']);
+//        });
+
+        Schema::drop('products_supply');
     }
 }

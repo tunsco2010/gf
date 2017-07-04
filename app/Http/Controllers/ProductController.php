@@ -4,9 +4,16 @@ namespace App\Http\Controllers;
 
 use App\Product;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Redirect;
 
 class ProductController extends Controller
 {
+    public function __construct()
+    {
+        $this->middleware('auth');
+    }
+
+
     /**
      * Display a listing of the resource.
      *
@@ -14,7 +21,7 @@ class ProductController extends Controller
      */
     public function index()
     {
-        //
+        return view('product.index');
     }
 
     /**
@@ -24,7 +31,8 @@ class ProductController extends Controller
      */
     public function create()
     {
-        //
+        $default_quantity = 0;
+        return view('product.create', compact('default_quantity'));
     }
 
     /**
@@ -35,18 +43,43 @@ class ProductController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        $this->validate($request, [
+            'name' => 'required',
+        ]);
+
+        $slug = str_slug($request->name, "-");
+
+        $product = Product::create([
+            'name' => $request->name,
+            'description' => $request->description,
+            'slug' => $slug,
+            'quantity' => $request->quantity,
+            'price' => $request->price
+        ]);
+
+        $product->save();
+
+        alert()->success('Congrats!', 'You added a Product');
+
+        return Redirect::route('product.index');
     }
 
     /**
      * Display the specified resource.
      *
-     * @param  \App\Product  $product
+     * @param  \App\Product $product
+     * @param string $slug
      * @return \Illuminate\Http\Response
      */
-    public function show(Product $product)
+    public function show(Product $product, $slug = '')
     {
-        //
+        if ($product->slug !== $slug) {
+            return Redirect::route('supplier.show', [
+                'id' => $product->id,
+                'slug' => $product->slug
+            ], 301);
+        }
+        return view('product.show', compact('product'));
     }
 
     /**
@@ -57,7 +90,7 @@ class ProductController extends Controller
      */
     public function edit(Product $product)
     {
-        //
+        return view('product.edit', compact('product'));
     }
 
     /**
@@ -69,7 +102,25 @@ class ProductController extends Controller
      */
     public function update(Request $request, Product $product)
     {
-        //
+        $this->validate($request, [
+            'name' => 'required|string|max:40|unique:products,name,'
+                .$product->id,
+            'quantity' => 'required'
+        ]);
+
+        $slug = str_slug($request->name, "-");
+
+        $product->update([
+            'name' => $request->name,
+            'description' => $request->description,
+            'slug' => $slug,
+            'quantity' => $request->quantity,
+            'price' => $request->price
+        ]);
+
+        alert()->success('Congrats!', 'You updated the product');
+
+        return Redirect::route('product.show', ['product' => $product, 'slug' =>$slug]);
     }
 
     /**
@@ -80,6 +131,10 @@ class ProductController extends Controller
      */
     public function destroy(Product $product)
     {
-        //
+        Product::destroy($product->id);
+
+        alert()->overlay('Attention!', 'You deleted the product', 'error');
+
+        return Redirect::route('product.index');
     }
 }

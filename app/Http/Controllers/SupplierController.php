@@ -43,10 +43,8 @@ class SupplierController extends Controller
     {
 
         $this->validate($request, [
-
             'name' => 'required|string|max:30',
             'company_name' => 'required|unique:suppliers|string|max:30'
-
         ]);
 
         $slug = str_slug($request->company_name, "-");
