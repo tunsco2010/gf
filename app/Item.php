@@ -5,7 +5,7 @@ namespace App;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\SoftDeletes;
 
-class Product extends Model
+class Item extends Model
 {
     use SoftDeletes;
 
@@ -17,16 +17,14 @@ class Product extends Model
     protected $fillable = [
         'name',
         'description',
-        'slug'
+        'code',
+        'quantity',
+        'price',
+        'category_id'
     ];
 
-    public function categories()
+    public function category()
     {
-        return $this->hasMany(Category::class);
-    }
-
-    public function suppliers()
-    {
-        return $this->belongsToMany(Supplier::class);
+        return $this->belongsTo(Category::class);
     }
 }

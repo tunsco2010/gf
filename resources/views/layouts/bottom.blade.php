@@ -1,5 +1,5 @@
-<hr>
-
+{{--<hr>--}}
+<br>
 <div class="well">
 
     <p>&copy;

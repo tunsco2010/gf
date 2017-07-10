@@ -27,6 +27,26 @@ Route::get('product/{product}-{slug?}', 'ProductController@show')->name('product
 Route::resource('product', 'ProductController', ['except' => ['show', 'create']]);
 Route::get('api/products-data', 'ApiController@productsIndex');
 
+// Item Routes
+Route::get('item/create', 'ItemController@create')->name('item.create');
+Route::get('item/{item}-{slug?}', 'ItemController@show')->name('item.show');
+
+Route::resource('item', 'ItemController', ['except' => ['show', 'create']]);
+Route::get('api/items-data', 'ApiController@itemsIndex');
+
+// Category Routes
+Route::get('category/create', 'CategoryController@create')->name('category.create');
+Route::get('category/{category}-{slug?}', 'CategoryController@show')->name('category.show');
+
+Route::resource('category', 'CategoryController', ['except' => ['show', 'create']]);
+Route::get('api/categories-data', 'ApiController@categoriesIndex');
+
+// Order Routes
+Route::get('order/create', 'OrderController@create')->name('order.create');
+Route::get('order/{order}-{slug?}', 'OrderController@show')->name('order.show');
+
+Route::resource('order', 'OrderController', ['except' => ['show', 'create']]);
+Route::get('api/orders-data', 'ApiController@ordersIndex');
 
 //test route
 Route::get('test', 'TestController@index');

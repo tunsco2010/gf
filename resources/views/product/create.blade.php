@@ -62,27 +62,6 @@
         </div>
 
 
-        <!-- Price Form Input -->
-
-        <div class="form-group{{ $errors->has('price') ? ' has-error' : '' }}">
-
-            <label class="control-label">Price</label>
-
-            <input type="text" class="form-control" name="price" value="{{ old('price') }}">
-
-            @if ($errors->has('price'))
-
-                <span class="help-block">
-                <strong>{{ $errors->first('price') }}</strong>
-                </span>
-
-            @endif
-
-        </div>
-
-        <input type="hidden" class="form-control" name="quantity" value="{{ $default_quantity }}">
-
-
         <div class="form-group">
 
             <button type="submit" class="btn btn-primary btn-lg">

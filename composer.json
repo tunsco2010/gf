@@ -6,10 +6,11 @@
     "type": "project",
     "require": {
         "php": ">=5.6.4",
+        "creativeorange/gravatar": "~1.0",
         "laravel/framework": "5.4.*",
         "laravel/tinker": "~1.0",
-        "creativeorange/gravatar": "~1.0",
-        "socieboy/alerts" : "dev-master"
+        "laravelcollective/html": "^5.4.0",
+        "socieboy/alerts": "dev-master"
     },
     "require-dev": {
         "fzaninotto/faker": "~1.4",

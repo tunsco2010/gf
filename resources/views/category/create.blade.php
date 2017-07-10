@@ -2,7 +2,7 @@
 
 @section('title')
 
-    <title>Edit Product</title>
+    <title>Create a Product Category</title>
 
 @endsection
 
@@ -10,27 +10,25 @@
 
     <ol class='breadcrumb'>
         <li><a href='/'>Home</a></li>
-        <li><a href='/product'>Products</a></li>
-        <li class='active'>Edit</li>
+        <li><a href='/category'>Categories</a></li>
+        <li class='active'>Create</li>
     </ol>
 
-    <h2>Edit a Product</h2>
+    <h2>Create a New Product Category</h2>
 
     <hr/>
 
-    <form class="form" role="form" method="POST" action="{{ url('/product/'. $product->id) }}">
-
-    {{ method_field('PATCH') }}
+    <form class="form" role="form" method="POST" action="{{ url('/category') }}">
 
     {{ csrf_field() }}
 
-    <!-- name Form Input -->
+    <!-- Name Form Input -->
 
         <div class="form-group{{ $errors->has('name') ? ' has-error' : '' }}">
 
             <label class="control-label">Name</label>
 
-            <input type="text" class="form-control" name="name" value="{{ $product->name }}">
+            <input type="text" class="form-control" name="name" value="{{ old('name') }}">
 
             @if ($errors->has('name'))
 
@@ -50,7 +48,7 @@
             <label class="control-label">Description</label>
 
             <textarea class="form-control" name="description" >
-                  {!! $product->description !!}
+                    {{ old('description') }}
             </textarea>
 
             @if ($errors->has('description'))
@@ -63,11 +61,33 @@
 
         </div>
 
+        <!-- Product Form Input -->
+
+        <div class="form-group{{ $errors->has('product') ? ' has-error' : '' }}">
+
+            <label class="control-label">Product</label>
+
+
+            <div class="form-group{{ $errors->has('product') ? ' has-error' : '' }}">
+                {!! Form::select('product', $products, null, ['class' => 'form-control']) !!}
+            </div>
+
+            @if ($errors->has('product'))
+
+                <span class="help-block">
+        <strong>{{ $errors->first('product') }}</strong>
+        </span>
+
+            @endif
+
+        </div>
+
+
         <div class="form-group">
 
             <button type="submit" class="btn btn-primary btn-lg">
 
-                Update
+                Create
 
             </button>
 

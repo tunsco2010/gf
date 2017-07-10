@@ -3,10 +3,18 @@
 namespace App\Http\Controllers;
 
 use App\Category;
+use App\Product;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Redirect;
 
 class CategoryController extends Controller
 {
+
+    public function __construct()
+    {
+        $this->middleware('auth');
+    }
+
     /**
      * Display a listing of the resource.
      *
@@ -14,7 +22,7 @@ class CategoryController extends Controller
      */
     public function index()
     {
-        //
+        return view('category.index');
     }
 
     /**
@@ -24,7 +32,8 @@ class CategoryController extends Controller
      */
     public function create()
     {
-        //
+        $products = Product::pluck('name', 'id');
+        return view('category.create', compact('products'));
     }
 
     /**
@@ -35,7 +44,25 @@ class CategoryController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        $this->validate($request, [
+            'name' => 'required',
+        ]);
+
+        $slug = str_slug($request->name, "-");
+
+        $category = Category::create([
+            'name' => $request->name,
+            'slug' => $slug,
+            'description' => $request->description,
+            'product_id' => $request->product
+        ]);
+
+
+        $category->save();
+
+        alert()->success('Congrats!', 'You added a Product Category');
+
+        return Redirect::route('category.index');
     }
 
     /**
@@ -44,9 +71,15 @@ class CategoryController extends Controller
      * @param  \App\Category  $category
      * @return \Illuminate\Http\Response
      */
-    public function show(Category $category)
+    public function show(Category $category, $slug = '')
     {
-        //
+        if ($category->slug !== $slug) {
+            return Redirect::route('category.show', [
+                'id' => $category->id,
+                'slug' => $category->slug
+            ], 301);
+        }
+        return view('category.show', compact('category'));
     }
 
     /**
@@ -57,7 +90,7 @@ class CategoryController extends Controller
      */
     public function edit(Category $category)
     {
-        //
+        return view('category.edit', compact('category'));
     }
 
     /**
@@ -69,7 +102,22 @@ class CategoryController extends Controller
      */
     public function update(Request $request, Category $category)
     {
-        //
+        $this->validate($request, [
+            'name' => 'required|string|max:40|unique:categories,name,'
+                .$category->id
+        ]);
+
+        $slug = str_slug($request->name, "-");
+
+        $category->update([
+            'name' => $request->name,
+            'description' => $request->description,
+            'slug' => $slug
+        ]);
+
+        alert()->success('Congrats!', 'You updated the product category');
+
+        return Redirect::route('category.show', ['category' => $category, 'slug' =>$slug]);
     }
 
     /**
@@ -80,6 +128,10 @@ class CategoryController extends Controller
      */
     public function destroy(Category $category)
     {
-        //
+        Category::destroy($category->id);
+
+        alert()->overlay('Attention!', 'You deleted the product category', 'error');
+
+        return Redirect::route('category.index');
     }
 }

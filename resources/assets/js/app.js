@@ -19,7 +19,15 @@ require('vue-resource');
 Vue.component('example', require('./components/Example.vue'));
 Vue.component('supplier-grid', require('./components/SupplierGrid.vue'));
 Vue.component('customer-grid', require('./components/CustomerGrid.vue'));
+Vue.component('category-grid', require('./components/CategoryGrid.vue'));
+Vue.component('item-grid', require('./components/ItemGrid.vue'));
+
 Vue.component('product-grid', require('./components/ProductGrid.vue'));
+Vue.component('product-list', require('./components/ProductList.vue'));
+
+Vue.component('item', require('./components/items/Item.vue'));
+Vue.component('shopping-cart', require('./components/items/ShoppingCart.vue'));
+Vue.component('orders', require('./components/items/Orders.vue'));
 
 const app = new Vue({
     el: '#app'

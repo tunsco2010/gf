@@ -24,7 +24,9 @@
     </div>
 
 
-    <hr>
+    {{--<hr>--}}
+    <br>
+    <br>
 
     @include('layouts.bottom')
 

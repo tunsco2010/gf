@@ -31,7 +31,7 @@
                                 {{ row.Id }}
                             </td>
                             <td>
-                                <a v-bind:href="'/product/' + row.Id + '-' + row.Slug "> {{ row.Name }}</a>
+                                <a v-bind:href="'/category/' + row.Id + '-' + row.Slug "> {{ row.Name }}</a>
                             </td>
                             <td>
                                 {{ row.Description }}
@@ -39,7 +39,7 @@
                             <td>
                                 {{ row.Created }}
                             </td>
-                            <td><a v-bind:href="'/product/' + row.Id + '/edit'">
+                            <td><a v-bind:href="'/category/' + row.Id + '/edit'">
                                 <button type="button" class="btn btn-default">
                                     Edit
                                 </button>
@@ -122,15 +122,15 @@
                 this.getData(query);
             },
             loadData: function () {
-                $.getJSON('api/items-data', function (data) {
+                $.getJSON('api/categories-data', function (data) {
                     this.gridData = data.data;
                     this.total = data.total;
                     this.last_page = data.last_page;
                     this.next_page_url = data.next_page_url;
                     this.prev_page_url = data.prev_page_url;
                     this.current_page = data.current_page;
-                    this.first_page_url = 'api/products-data?page=1';
-                    this.last_page_url = 'api/products-data?page=' + this.last_page;
+                    this.first_page_url = 'api/categories-data?page=1';
+                    this.last_page_url = 'api/categories-data?page=' + this.last_page;
                     this.setPageNumbers();
                 }.bind(this));
             },
@@ -163,14 +163,14 @@
                             '&direction=' + this.sortOrder;
                         break;
                     case this.query :
-                        getPage = 'api/products-data?' +
+                        getPage = 'api/categories-data?' +
                             'keyword=' + this.query +
                             '&column=' + this.sortKey +
                             '&direction=' + this.sortOrder;
                         break;
                     case this.go_to_page :
                         if (this.go_to_page != '' && this.pageInRange()) {
-                            getPage = 'api/products-data?' +
+                            getPage = 'api/categories-data?' +
                                 'page=' + this.go_to_page +
                                 '&column=' + this.sortKey +
                                 '&direction=' + this.sortOrder +
@@ -181,7 +181,7 @@
                         }
                         break;
                     default :
-                        getPage = 'api/products-data?' +
+                        getPage = 'api/categories-data?' +
                             'page=' + request +
                             '&column=' + this.sortKey +
                             '&direction=' + this.sortOrder +
@@ -205,8 +205,8 @@
                             this.last_page = data.last_page;
                             this.next_page_url = (data.next_page_url == null) ? null : data.next_page_url + '&keyword=' + this.query;
                             this.prev_page_url = (data.prev_page_url == null) ? null : data.prev_page_url + '&keyword=' + this.query;
-                            this.first_page_url = 'api/products-data?page=1&keyword=' + this.query;
-                            this.last_page_url = 'api/products-data?page=' + this.last_page + '&keyword=' + this.query;
+                            this.first_page_url = 'api/categories-data?page=1&keyword=' + this.query;
+                            this.last_page_url = 'api/categories-data?page=' + this.last_page + '&keyword=' + this.query;
                             this.current_page = data.current_page;
                             this.resetPageNumbers();
                         }.bind(this));

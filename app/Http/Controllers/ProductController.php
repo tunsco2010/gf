@@ -31,8 +31,7 @@ class ProductController extends Controller
      */
     public function create()
     {
-        $default_quantity = 0;
-        return view('product.create', compact('default_quantity'));
+        return view('product.create');
     }
 
     /**
@@ -52,9 +51,7 @@ class ProductController extends Controller
         $product = Product::create([
             'name' => $request->name,
             'description' => $request->description,
-            'slug' => $slug,
-            'quantity' => $request->quantity,
-            'price' => $request->price
+            'slug' => $slug
         ]);
 
         $product->save();
@@ -74,7 +71,7 @@ class ProductController extends Controller
     public function show(Product $product, $slug = '')
     {
         if ($product->slug !== $slug) {
-            return Redirect::route('supplier.show', [
+            return Redirect::route('product.show', [
                 'id' => $product->id,
                 'slug' => $product->slug
             ], 301);
@@ -104,8 +101,7 @@ class ProductController extends Controller
     {
         $this->validate($request, [
             'name' => 'required|string|max:40|unique:products,name,'
-                .$product->id,
-            'quantity' => 'required'
+                .$product->id
         ]);
 
         $slug = str_slug($request->name, "-");
@@ -113,9 +109,7 @@ class ProductController extends Controller
         $product->update([
             'name' => $request->name,
             'description' => $request->description,
-            'slug' => $slug,
-            'quantity' => $request->quantity,
-            'price' => $request->price
+            'slug' => $slug
         ]);
 
         alert()->success('Congrats!', 'You updated the product');

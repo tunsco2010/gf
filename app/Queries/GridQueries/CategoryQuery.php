@@ -5,12 +5,12 @@ namespace App\Queries\GridQueries;
 use App\Queries\GridQueries\Contracts\DataQuery;
 use DB;
 
-class ProductQuery implements DataQuery
+class CategoryQuery implements DataQuery
 {
 
     public function data($column, $direction)
     {
-        $products = DB::table('products')->select(
+        $categories = DB::table('categories')->select(
             'id as Id',
             'name as Name',
             'description as Description',
@@ -18,15 +18,14 @@ class ProductQuery implements DataQuery
             'created_at as Created')
 //            DB::raw('DATE_FORMAT(created_at, "%m-%d-%Y") as Created'))
             ->orderBy($column, $direction)
-            ->where('deleted_at')
             ->paginate(10);
 
-        return $products;
+        return $categories;
     }
 
     public function filteredData($column, $direction, $keyword)
     {
-        $products = DB::table('products')->select(
+        $categories = DB::table('categories')->select(
             'id as Id',
             'name as Name',
             'description as Description',
@@ -37,7 +36,7 @@ class ProductQuery implements DataQuery
             ->orderBy($column, $direction)
             ->paginate(10);
 
-        return $products;
+        return $categories;
     }
 
 }
