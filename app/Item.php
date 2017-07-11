@@ -27,4 +27,16 @@ class Item extends Model
     {
         return $this->belongsTo(Category::class);
     }
+
+    public function scopeSearchByKeyword($query, $keyword)
+    {
+        if ($keyword != '') {
+            $query->where(function ($query) use ($keyword) {
+                $query->where('name', 'LIKE', '%'.$keyword.'%')
+                    ->orWhere('code', 'LIKE', '%'.$keyword.'%');
+            });
+        }
+
+        return $query;
+    }
 }

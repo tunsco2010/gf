@@ -16,19 +16,30 @@
         </div>
         <div id="navbar" class="navbar-collapse collapse pull-right">
             <ul class="nav navbar-nav">
-                <li><a href="/order/create">Sales</a></li>
-                <li class="dropdown"><a href="#" class="dropdown-toggle"
-                                        data-toggle="dropdown" role="button" aria-haspopup="true"
-                                        aria-expanded="false">Manage Farm<span class="caret"></span></a>
-                    <ul class="dropdown-menu">
-                        <li><a href="/product">Products</a></li>
-                        <li><a href="/category">Categories</a></li>
-                        <li><a href="/item">Sales Items</a></li>
-                        <li><a href="/supplier">Suppliers</a></li>
-                        <li><a href="/customer">Customers</a></li>
-                    </ul>
-                </li>
+
                 @if (Auth::check())
+
+                    <li><a href="/order/create">Sales</a></li>
+                    <li class="dropdown"><a href="#" class="dropdown-toggle"
+                                            data-toggle="dropdown" role="button" aria-haspopup="true"
+                                            aria-expanded="false">Manage Products<span class="caret"></span></a>
+                        <ul class="dropdown-menu">
+                            <li><a href="/product">Products</a></li>
+                            <li><a href="/category">Categories</a></li>
+                            <li><a href="/item">Sales Items</a></li>
+                            <li><a href="/supplier">Suppliers</a></li>
+                            <li><a href="/customer">Customers</a></li>
+                        </ul>
+                    </li>
+
+                    <li class="dropdown"><a href="#" class="dropdown-toggle"
+                                            data-toggle="dropdown" role="button" aria-haspopup="true"
+                                            aria-expanded="false">Inventories<span class="caret"></span></a>
+                        <ul class="dropdown-menu">
+                            <li><a href="{{ url('inventory/receiving') }}">Receiving</a></li>
+                        </ul>
+                    </li>
+
                     <li class="dropdown">
                         <a href="#" class="dropdown-toggle"
                            data-toggle="dropdown" role="button"

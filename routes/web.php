@@ -11,6 +11,7 @@ Route::get('supplier/{supplier}-{slug?}', 'SupplierController@show')->name('supp
 
 Route::resource('supplier', 'SupplierController', ['except' => ['show', 'create']]);
 Route::get('api/suppliers-data', 'ApiController@suppliersIndex');
+Route::get('api/suppliers', 'ApiController@suppliersList');
 
 // Customer Routes
 Route::get('customer/create', 'CustomerController@create')->name('customer.create');
@@ -33,6 +34,7 @@ Route::get('item/{item}-{slug?}', 'ItemController@show')->name('item.show');
 
 Route::resource('item', 'ItemController', ['except' => ['show', 'create']]);
 Route::get('api/items-data', 'ApiController@itemsIndex');
+Route::get('api/items', 'ApiController@itemsList');
 
 // Category Routes
 Route::get('category/create', 'CategoryController@create')->name('category.create');
@@ -47,6 +49,18 @@ Route::get('order/{order}-{slug?}', 'OrderController@show')->name('order.show');
 
 Route::resource('order', 'OrderController', ['except' => ['show', 'create']]);
 Route::get('api/orders-data', 'ApiController@ordersIndex');
+
+// Inventories Routes
+Route::group(['prefix' => 'inventory'], function () {
+    Route::resource('receiving', 'ReceivingController', ['except' => ['edit', 'update', 'destroy']]);
+    Route::resource('adjustments', 'AdjustmentController', ['except' => ['edit', 'update', 'destroy']]);
+    Route::get('trackings', 'TrackingController@index');
+});
+
+// Sales and Inventories  Store API
+Route::post('sales', 'ApiController@storeSales');
+Route::post('receiving', 'ApiController@storeReceivings');
+Route::post('adjustments', 'ApiController@storeAdjustments');
 
 //test route
 Route::get('test', 'TestController@index');

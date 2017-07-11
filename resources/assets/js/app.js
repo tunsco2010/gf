@@ -21,6 +21,8 @@ Vue.component('supplier-grid', require('./components/SupplierGrid.vue'));
 Vue.component('customer-grid', require('./components/CustomerGrid.vue'));
 Vue.component('category-grid', require('./components/CategoryGrid.vue'));
 Vue.component('item-grid', require('./components/ItemGrid.vue'));
+Vue.component('pos-autocomplete', require('./components/helpers/PosAutoComplete.vue'));
+Vue.component('receiving', require('./components/Receiving.vue'));
 
 Vue.component('product-grid', require('./components/ProductGrid.vue'));
 Vue.component('product-list', require('./components/ProductList.vue'));

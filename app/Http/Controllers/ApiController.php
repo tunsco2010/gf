@@ -2,13 +2,17 @@
 
 namespace App\Http\Controllers;
 
+use App\Item;
+use App\Supplier;
 use App\Queries\GridQueries\CategoryQuery;
 use App\Queries\GridQueries\CustomerQuery;
 use App\Queries\GridQueries\GridQuery;
 use App\Queries\GridQueries\ItemQuery;
 use App\Queries\GridQueries\ProductQuery;
 use App\Queries\GridQueries\SupplierQuery;
+use App\Receiving;
 use DB;
+use Validator;
 use Illuminate\Http\Request;
 
 class ApiController extends Controller
@@ -40,10 +44,49 @@ class ApiController extends Controller
 
     public function storeSales(Request $request)
     {
+
+    }
+
+    public function storeReceivings(Request $request)
+    {
         $form = $request->all();
 
+        // inject current user id
         $form['user_id'] = $request->user()->id;
 
+        $rules = Receiving::$rules;
+        $rules['items'] = 'required';
 
+        $validator = Validator::make($form, $rules);
+
+
+        if ($validator->fails()) {
+            return response()->json([
+                'errors' => $validator->errors()->all(),
+            ], 400);
+        }
+
+        Receiving::createAll($form);
+
+        return response()->json([], 201);
+    }
+
+    public function storeAdjustments(Request $request)
+    {
+
+    }
+
+    public function itemsList(Request $request)
+    {
+        $keyword = $request->get('q', '');
+        $items = Item::searchByKeyword($keyword)->paginate()->appends(['q' => $keyword]);
+        return response()->json($items->toArray());
+    }
+
+    public function suppliersList(Request $request)
+    {
+        $keyword = $request->get('q', '');
+        $suppliers = Supplier::searchByKeyword($keyword)->paginate()->appends(['q' => $keyword]);
+        return response()->json($suppliers->toArray());
     }
 }

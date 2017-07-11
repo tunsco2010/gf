@@ -22,11 +22,20 @@ class Supplier extends SuperModel
         'address'
     ];
     
-
-
     // Relationships
     public function products()
     {
         return $this->belongsToMany(Product::class);
+    }
+
+    public function scopeSearchByKeyword($query, $keyword)
+    {
+        if ($keyword != '') {
+            $query->where(function ($query) use ($keyword) {
+                $query->where('name', 'LIKE', '%'.$keyword.'%');
+            });
+        }
+
+        return $query;
     }
 }

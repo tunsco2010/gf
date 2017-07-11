@@ -4,8 +4,9 @@ namespace App;
 
 use Illuminate\Database\Eloquent\Model;
 
-class OrderItem extends Model
+class ItemReceiving extends Model
 {
+
     protected $fillable = [
         'item_id',
         'price',
@@ -17,16 +18,8 @@ class OrderItem extends Model
         return $this->attributes['price'] * $this->attributes['quantity'];
     }
 
-
-
     public function trackings()
     {
         return $this->morphOne(InventoryTracking::class, 'trackable');
     }
-
-    public function item()
-    {
-        return $this->belongsTo(Item::class);
-    }
-
 }
