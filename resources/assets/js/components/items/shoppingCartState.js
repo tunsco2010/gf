@@ -21,6 +21,7 @@ export default {
             this.data.cart[index].Quantity++
         }
     },
+
     dec (item) {
         var found = _.find(this.data.cart, ['Id', item.Id])
         if(typeof found == 'object') {
@@ -31,6 +32,13 @@ export default {
             } else {
                 this.data.cart[index].Quantity--
             }
+        }
+    },
+
+    createSale(items) {
+        if (confirm('this process cannot be undone'))
+        {
+            console.log(items)
         }
     }
 }

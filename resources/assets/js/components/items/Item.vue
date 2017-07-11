@@ -44,6 +44,7 @@
             dec() {
                 State.dec(this.item)
             }
+
         },
 
         computed: {

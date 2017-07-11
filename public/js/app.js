@@ -2958,6 +2958,9 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 //
 //
 //
+//
+//
+//
 
 
 
@@ -2976,6 +2979,12 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
             return __WEBPACK_IMPORTED_MODULE_0_lodash___default.a.sumBy(this.items, function (item) {
                 return item.Price * item.Quantity;
             });
+        }
+    },
+
+    methods: {
+        checkout: function checkout() {
+            __WEBPACK_IMPORTED_MODULE_1__shoppingCartState__["a" /* default */].createSale(this.items);
         }
     }
 });
@@ -33223,7 +33232,14 @@ module.exports={render:function (){var _vm=this;var _h=_vm.$createElement;var _c
     staticClass: "cart-total"
   }, [_c('span', [_vm._v("Total")]), _vm._v(" "), _c('span', {
     staticClass: "right"
-  }, [_vm._v("₦" + _vm._s(_vm.total))])])])
+  }, [_vm._v("₦" + _vm._s(_vm.total))])]), _vm._v(" "), _c('br'), _vm._v(" "), _c('p', {
+    staticClass: "right"
+  }, [_c('button', {
+    staticClass: "btn btn-default",
+    on: {
+      "click": _vm.checkout
+    }
+  }, [_vm._v("Checkout")])])])
 },staticRenderFns: []}
 module.exports.render._withStripped = true
 if (false) {
@@ -46353,6 +46369,11 @@ var _typeof = typeof Symbol === "function" && typeof Symbol.iterator === "symbol
             } else {
                 this.data.cart[index].Quantity--;
             }
+        }
+    },
+    createSale: function createSale(items) {
+        if (confirm('this process cannot be undone')) {
+            console.log(items);
         }
     }
 });

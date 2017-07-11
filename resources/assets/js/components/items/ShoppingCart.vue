@@ -18,6 +18,9 @@
             <span class="right">&#x20A6;{{total}}</span>
         </div>
 
+        <br>
+        <p class="right"><button class="btn btn-default" @click="checkout">Checkout</button></p>
+
     </div>
 </template>
 
@@ -40,6 +43,12 @@
                     return (item.Price * item.Quantity)
                 })
             }
+        },
+
+        methods: {
+                checkout() {
+                    State.createSale(this.items)
+                }
         }
     }
 

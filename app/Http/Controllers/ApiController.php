@@ -37,4 +37,13 @@ class ApiController extends Controller
     {
         return  GridQuery::sendData($request, new CategoryQuery());
     }
+
+    public function storeSales(Request $request)
+    {
+        $form = $request->all();
+
+        $form['user_id'] = $request->user()->id;
+
+
+    }
 }
