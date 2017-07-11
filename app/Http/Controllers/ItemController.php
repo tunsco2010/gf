@@ -49,7 +49,7 @@ class ItemController extends Controller
         ]);
 
         $category = Category::find($request->category);
-        $code =  $category->product->name. "-" . $category->name;
+        $code =  $category->name;
 
         $item= Item::create([
             'name' => $code,

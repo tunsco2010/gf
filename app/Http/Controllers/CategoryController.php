@@ -50,11 +50,13 @@ class CategoryController extends Controller
 
         $slug = str_slug($request->name, "-");
 
+        $product = Product::find($request->product);
+
         $category = Category::create([
-            'name' => $request->name,
+            'name' => $product->name. "-" .$request->name,
             'slug' => $slug,
             'description' => $request->description,
-            'product_id' => $request->product
+            'product_id' => $product->id
         ]);
 
 
