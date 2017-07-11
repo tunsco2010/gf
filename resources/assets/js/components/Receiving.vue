@@ -118,7 +118,7 @@
                         comments: this.form.comments,
                         items: _.map(this.cart, (cart) => {
                             return {
-                                product_id: cart.id,
+                                item_id: cart.id,
                                 quantity: cart.quantity,
                                 price: cart.price
                             }
@@ -128,7 +128,7 @@
                         this.form.comments = null
                         this.form.supplier = {}
 
-                        $.notify('Receivings created', {
+                        $.notify('Receivings Created', {
                             type: 'success',
                             placement: {
                                 from: 'bottom'

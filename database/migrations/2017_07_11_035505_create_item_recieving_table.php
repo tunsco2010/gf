@@ -16,7 +16,7 @@ class CreateItemRecievingTable extends Migration
         Schema::create('item_receiving', function (Blueprint $table) {
             $table->increments('id');
             $table->integer('receiving_id')->unsigned();
-            $table->foreign('receiving_id')->references('id')->on('receiving');
+            $table->foreign('receiving_id')->references('id')->on('receivings');
             $table->integer('item_id');
             $table->decimal('price');
             $table->integer('quantity');

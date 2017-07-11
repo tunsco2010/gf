@@ -13,6 +13,7 @@ use App\Queries\GridQueries\SupplierQuery;
 use App\Receiving;
 use DB;
 use Validator;
+use Illuminate\Support\Facades\Auth;
 use Illuminate\Http\Request;
 
 class ApiController extends Controller
@@ -47,12 +48,16 @@ class ApiController extends Controller
 
     }
 
-    public function storeReceivings(Request $request)
+    public function storeReceiving(Request $request)
     {
         $form = $request->all();
 
+        $auth = app('auth');
+        $guard = $auth->guard();
+        $user = $guard->user();
+
         // inject current user id
-        $form['user_id'] = $request->user()->id;
+        $form['user_id'] = $user->id;
 
         $rules = Receiving::$rules;
         $rules['items'] = 'required';
@@ -62,7 +67,7 @@ class ApiController extends Controller
 
         if ($validator->fails()) {
             return response()->json([
-                'errors' => $validator->errors()->all(),
+                'errors' => $validator->errors()->all()
             ], 400);
         }
 

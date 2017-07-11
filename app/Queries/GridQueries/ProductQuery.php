@@ -16,7 +16,6 @@ class ProductQuery implements DataQuery
             'description as Description',
             'slug as Slug',
             'created_at as Created')
-//            DB::raw('DATE_FORMAT(created_at, "%m-%d-%Y") as Created'))
             ->orderBy($column, $direction)
             ->where('deleted_at')
             ->paginate(10);
@@ -32,7 +31,6 @@ class ProductQuery implements DataQuery
             'description as Description',
             'slug as Slug',
             'created_at as Created')
-           // DB::raw('DATE_FORMAT(created_at, "%m-%d-%Y") as Created'))
             ->where('name', 'like', '%' . $keyword . '%')
             ->orderBy($column, $direction)
             ->paginate(10);

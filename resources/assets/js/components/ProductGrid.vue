@@ -122,7 +122,7 @@
                 this.getData(query);
             },
             loadData: function () {
-                $.getJSON('api/items-data', function (data) {
+                $.getJSON('api/products-data', function (data) {
                     this.gridData = data.data;
                     this.total = data.total;
                     this.last_page = data.last_page;

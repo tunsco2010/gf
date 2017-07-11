@@ -182,6 +182,8 @@ return [
         Socieboy\Alerts\AlertServiceProvider::class,
         Collective\Html\HtmlServiceProvider::class,
 
+        Laravel\Passport\PassportServiceProvider::class,
+
     ],
 
     /*

@@ -7,9 +7,9 @@
 @section('content')
 
     <ol class="breadcrumb">
-        <li><a href="#">Test</a></li>
+        <li><a href="#">Tokens</a></li>
     </ol>
 
-  <example></example>
+    <passport-personal-access-tokens></passport-personal-access-tokens>
 
 @endsection

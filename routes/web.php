@@ -57,10 +57,6 @@ Route::group(['prefix' => 'inventory'], function () {
     Route::get('trackings', 'TrackingController@index');
 });
 
-// Sales and Inventories  Store API
-Route::post('sales', 'ApiController@storeSales');
-Route::post('receiving', 'ApiController@storeReceivings');
-Route::post('adjustments', 'ApiController@storeAdjustments');
 
 //test route
 Route::get('test', 'TestController@index');

@@ -17,8 +17,9 @@
                         <tr>
                             <th>#</th>
                             <th>Supplier</th>
-                            <th>Total Item</th>
-                            <th>Total Amount</th>
+                            <th>Items</th>
+                            <th>No Items Supplied</th>
+                            <th>Total Cost</th>
                             <th>Created</th>
                         </tr>
                         </thead>
@@ -27,8 +28,16 @@
                             <tr>
                                 <td>{{ $key + 1 }}</td>
                                 <td>{{ ($receiving->supplier) ? $receiving->supplier->name : 'SUP-'.$receiving->supplier_id }}</td>
+                                <td>
+                                    @foreach($receiving->items as $itemReceiving)
+                                           <?php
+                                               $item = \App\Item::find($itemReceiving['item_id']);
+                                               $quantity = $itemReceiving['quantity'];
+                                            ?>
+                                          <p>{{$item->name}}({{$quantity}})</p>
+                                    @endforeach</td>
                                 <td>{{ $receiving->total_item }}</td>
-                                <td>{{ $receiving->total_amount }}</td>
+                                <td>&#x20A6;{{ $receiving->total_amount }}</td>
                                 <td>{{ $receiving->created_at->format('d F Y H:i') }}</td>
                             </tr>
                         @empty

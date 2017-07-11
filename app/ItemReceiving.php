@@ -7,6 +7,8 @@ use Illuminate\Database\Eloquent\Model;
 class ItemReceiving extends Model
 {
 
+    protected $table = 'item_receiving';
+
     protected $fillable = [
         'item_id',
         'price',

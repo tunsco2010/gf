@@ -19,7 +19,7 @@ class Receiving extends Model
 
     public function supplier()
     {
-        return $this->belong(Supplier::class);
+        return $this->belongsTo(Supplier::class);
     }
 
 
@@ -62,7 +62,7 @@ class Receiving extends Model
                 $item->quantity += $singleItem['quantity'];
                 $item->save();
 
-                $item->trackings()->save($tracking);
+                $singleItem->trackings()->save($tracking);
             });
         });
     }

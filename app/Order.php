@@ -22,7 +22,7 @@ class Order extends Model
         'user_id'
     ];
 
-    
+
 
     public function customer()
     {

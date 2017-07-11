@@ -13,7 +13,7 @@ class CreateRecievingsTable extends Migration
      */
     public function up()
     {
-        Schema::create('receiving', function (Blueprint $table) {
+        Schema::create('receivings', function (Blueprint $table) {
             $table->increments('id');
             $table->integer('supplier_id');
             $table->integer('user_id');
@@ -29,6 +29,6 @@ class CreateRecievingsTable extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('receiving');
+        Schema::dropIfExists('receivings');
     }
 }
