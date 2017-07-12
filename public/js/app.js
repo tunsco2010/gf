@@ -3310,6 +3310,10 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 //
 //
 //
+//
+//
+//
+//
 
 
 
@@ -3318,7 +3322,10 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 /* harmony default export */ __webpack_exports__["default"] = ({
     data: function data() {
         return {
-            items: __WEBPACK_IMPORTED_MODULE_1__shoppingCartState__["a" /* default */].data.cart
+            items: __WEBPACK_IMPORTED_MODULE_1__shoppingCartState__["a" /* default */].data.cart,
+            form: {
+                customer: {}
+            }
         };
     },
 
@@ -3335,26 +3342,21 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
         checkout: function checkout() {
 
             if (confirm('this process cannot be undone')) {
-                axios({
-                    method: 'post',
-                    url: '/api/sales',
-                    data: {
-                        customer_id: this.form.customer.id,
-                        comments: this.form.comments,
-                        items: __WEBPACK_IMPORTED_MODULE_0_lodash___default.a.map(this.cart, function (cart) {
-                            return {
-                                item_id: cart.id,
-                                quantity: cart.quantity,
-                                price: cart.price
-                            };
-                        })
-                    }
+                this.$http.post('/api/sales', {
+                    customer_id: this.form.customer.id,
+                    items: __WEBPACK_IMPORTED_MODULE_0_lodash___default.a.map(this.items, function (cart) {
+                        return {
+                            item_id: cart.Id,
+                            quantity: cart.Quantity,
+                            price: cart.Price
+                        };
+                    })
                 }).then(function (response) {
                     var responseBody = response.body;
 
                     this.cart = [];
-                    this.form.totalPayment = null;
-                    this.form.comments = null;
+                    //this.form.totalPayment = null
+                    //                           this.form.description = null
                     this.form.customer = {};
 
                     $.notify('Order created with <a href="/order/receipt/' + responseBody.id + '" target="_BLANK">INVOICE</a>', {
@@ -3367,6 +3369,9 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
                     window.open('/order/receipt/' + responseBody.id);
                 });
             }
+        },
+        autocompleteSelect: function autocompleteSelect(data) {
+            this.form.customer = data;
         }
     }
 });
@@ -34843,14 +34848,21 @@ module.exports={render:function (){var _vm=this;var _h=_vm.$createElement;var _c
     staticClass: "cart-total"
   }, [_c('span', [_vm._v("Total")]), _vm._v(" "), _c('span', {
     staticClass: "right"
-  }, [_vm._v("₦" + _vm._s(_vm.total))])]), _vm._v(" "), _c('br'), _vm._v(" "), _c('p', {
+  }, [_vm._v("₦" + _vm._s(_vm.total))])]), _vm._v(" "), _c('br'), _vm._v(" "), _c('pos-autocomplete', {
+    attrs: {
+      "label": "Customer",
+      "src": "/api/customers",
+      "placeholder": "Search customer",
+      "select": _vm.autocompleteSelect
+    }
+  }), _vm._v(" "), _c('br'), _vm._v(" "), _c('p', {
     staticClass: "right"
   }, [_c('button', {
     staticClass: "btn btn-default",
     on: {
       "click": _vm.checkout
     }
-  }, [_vm._v("Checkout")])])])
+  }, [_vm._v("Checkout")])])], 1)
 },staticRenderFns: []}
 module.exports.render._withStripped = true
 if (false) {
@@ -48421,7 +48433,7 @@ window.Vue = __webpack_require__("./node_modules/vue/dist/vue.common.js");
 __webpack_require__("./node_modules/vue-resource/dist/vue-resource.es2015.js");
 
 Vue.http.interceptors.push(function (request, next) {
-    request.headers.set('Authorization', 'Bearer eyJ0eXAiOiJKV1QiLCJhbGciOiJSUzI1NiIsImp0aSI6IjI4ODc5Nzg2NjJiYjg5OTQxMjVmN2U3ZjRhYTU2NWY5MWIzY2NlYmU1MGZlNjMxYmQ5Njc0MmMxMDcxOTg3YjkyZDk1YmJhNWE3ZjJhN2MzIn0.eyJhdWQiOiIzIiwianRpIjoiMjg4Nzk3ODY2MmJiODk5NDEyNWY3ZTdmNGFhNTY1ZjkxYjNjY2ViZTUwZmU2MzFiZDk2NzQyYzEwNzE5ODdiOTJkOTViYmE1YTdmMmE3YzMiLCJpYXQiOjE0OTk4MTY5NzgsIm5iZiI6MTQ5OTgxNjk3OCwiZXhwIjoxNTMxMzUyOTc4LCJzdWIiOiI2Iiwic2NvcGVzIjpbXX0.LH5XoOpGwVByxTURhLQg5_fMXTrd7ShWnPDkfBH9thOYyIO0GniFuNe6KMS6SF96lvK5G5DDLQCx1HmavFZZjeh1BJIgdfKzFvOlhFYpRw-8cBKyTZku6yzhY_SONKF4he_E1biKhuKZOcGrtD4alA-vAkMvd3KrbaHTX5rVqyDzrAFflQm4DXMj13r-BboQ46ueZXi6vwZEMBQUtgEKgW2bII2Ty0l3pBbL_P04K1PtLoa_plIgpoyOGsaf2Tl_2iCwMO2TwZMry-VoPCWexdBYwEbbFeJGel4qj02ItulS4VfvOK1r3ovN6gynZFX0SaQWLy57QFpD91C-eJtR40bXY6aIaINOkjKCu67I7SbFjljJ4XdwNPL8RWaE5cdlQD3loOBp9U8CnKXNykOzPAu5q3EaBNghd9efmsh5GLLefbJheKxP7ZVAxJyQV7Ykq1utywSo5JOd6SPm978_8kAIhpfhhJgRgC94toUDl01Qy9tP7QklwhLLQb-Q6Q8gpXz3tLsayb_kHvCVIH9hZHD8aQF56b-ZqEPKJSydkI4TP9uuG9zomxu7Xo4OtZ9fAaPpU6xtjSqhxTK-XQEei7TlLWwm7O5pUPs63rVQFve7OD_CN0R5l5kmA_q7q_jo8J5W3eRD0SX1_g0YL43sBWvcRAbIoWDyeC46erTMYB0');
+    request.headers.set('Authorization', 'Bearer eyJ0eXAiOiJKV1QiLCJhbGciOiJSUzI1NiIsImp0aSI6ImE5ZGQ3NTRhYjg4NDM3ZWQ1ZjRkYmU4YWYxMWM3MTM1Njg3YTVjYWExNjg2ZjIxOWNlZTVkNTI3ZmQ3ZjMzNmNmZDlmN2MyY2UxODQwYzU4In0.eyJhdWQiOiIzIiwianRpIjoiYTlkZDc1NGFiODg0MzdlZDVmNGRiZThhZjExYzcxMzU2ODdhNWNhYTE2ODZmMjE5Y2VlNWQ1MjdmZDdmMzM2Y2ZkOWY3YzJjZTE4NDBjNTgiLCJpYXQiOjE0OTk4MjE3NzMsIm5iZiI6MTQ5OTgyMTc3MywiZXhwIjoxNTMxMzU3NzczLCJzdWIiOiI2Iiwic2NvcGVzIjpbXX0.nn49DckHK-vEbNAfNRIizKDeHpijQe5Fb0FOShy8eRzqPq_tsWu9W7X_5muOFXr-mXT4IGuNRmtRuNeFpkc_w9_li-EctSgBi_xbTPnt6HTCg9cKAHR7TWK41ArOt14z_NPPCGGCX4aDs2RE9D_8BlqZ-SdOTkFH3GQFf1vMkbO0t8tkFAOQXAAvmF0ZaBYU9DYd8k6aK5sdejURbMoeyYy5gZbhXmmym1mBY-rnShAzgzZq0zFZ9jl6YPRpINxlJDPsEuu1JpnJNi5K9tvIU_z6g4K8oekWBtn54QiIwzxvuCJI2ScebyrET3OFN3AHIAawLYMplU5qqgiN9Lm4c3lEGqigDi6D4hqA-X4yxE6adlHRloVr5Acs7pvbRkiTWWXZfYNnrr7GcmMwT6PY9CPzvlx0T-MFHVKUuPy1PD0RUYoWjCj8jIS4RpiYnNhO3BzI1JkQT7-HNuX3rAsQPGPDDfrVNW__5SQDNdPOFoD24qMbOyhNn8gL5BKxjiqnyUuz7bN0mfVihhjP4y5QfOvtqUw1SWVRNCMEjemNNX8mQfpf5tJxeBz3Bg1TcqzJPYgt6zy5sSTkLdRR1G8iPkXS3pK4c7bAB6RyxqUQk0mwFJyL2SIJIxsbGXsPUtoJsFEsl4vo-CNMNu5ZSAYt4TVtph6PF56Ed7b8W0oW0vc');
     request.headers.set('Accept', 'application/json');
     next();
 });

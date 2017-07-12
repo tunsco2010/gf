@@ -50,6 +50,7 @@ Route::get('order/{order}-{slug?}', 'OrderController@show')->name('order.show');
 
 Route::resource('order', 'OrderController', ['except' => ['show', 'create']]);
 Route::get('api/orders-data', 'ApiController@ordersIndex');
+Route::get('order/receipt/{id}', 'OrderController@receipt');
 
 // Inventories Routes
 Route::group(['prefix' => 'inventory'], function () {

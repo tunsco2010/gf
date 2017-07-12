@@ -19,6 +19,10 @@
         </div>
 
         <br>
+
+        <pos-autocomplete label="Customer" src="/api/customers" placeholder="Search customer" :select="autocompleteSelect"></pos-autocomplete>
+
+        <br>
         <p class="right"><button class="btn btn-default" @click="checkout">Checkout</button></p>
 
     </div>
@@ -32,7 +36,10 @@
     export default {
         data() {
             return {
-                items: State.data.cart
+                items: State.data.cart,
+                form: {
+                    customer: {},
+                }
             }
         },
 
@@ -50,26 +57,21 @@
 
                     if (confirm('this process cannot be undone'))
                     {
-                        axios({
-                            method: 'post',
-                            url: '/api/sales',
-                            data: {
-                                customer_id: this.form.customer.id,
-                                comments: this.form.comments,
-                                items: _.map(this.cart, function(cart){
-                                    return {
-                                        item_id: cart.id,
-                                        quantity: cart.quantity,
-                                        price: cart.price
-                                    }
-                                })
-                            }
+                        this.$http.post('/api/sales', {
+                            customer_id: this.form.customer.id,
+                            items: _.map(this.items, function(cart){
+                                return {
+                                    item_id: cart.Id,
+                                    quantity: cart.Quantity,
+                                    price: cart.Price
+                                }
+                            })
                         }).then(function(response) {
                             let responseBody = response.body
 
                             this.cart = []
-                            this.form.totalPayment = null
-                            this.form.comments = null
+                            //this.form.totalPayment = null
+//                           this.form.description = null
                             this.form.customer = {}
 
                             $.notify('Order created with <a href="/order/receipt/' + responseBody.id + '" target="_BLANK">INVOICE</a>', {
@@ -81,8 +83,13 @@
 
                             window.open('/order/receipt/' + responseBody.id)
                         })
+
+
                     }
-                }
+                },
+            autocompleteSelect(data) {
+                this.form.customer = data
+            }
         }
     }
 
