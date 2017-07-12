@@ -62,3 +62,4 @@ Route::group(['prefix' => 'inventory'], function () {
 
 //test route
 Route::get('test', 'TestController@index');
+Route::get('test/user', 'TestController@getUser');
