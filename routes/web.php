@@ -19,6 +19,7 @@ Route::get('customer/{customer}-{slug?}', 'CustomerController@show')->name('cust
 
 Route::resource('customer', 'CustomerController', ['except' => ['show', 'create']]);
 Route::get('api/customers-data', 'ApiController@customersIndex');
+Route::get('api/customers', 'ApiController@customersList');
 
 
 // Product Routes
@@ -53,8 +54,8 @@ Route::get('api/orders-data', 'ApiController@ordersIndex');
 // Inventories Routes
 Route::group(['prefix' => 'inventory'], function () {
     Route::resource('receiving', 'ReceivingController', ['except' => ['edit', 'update', 'destroy']]);
-    Route::resource('adjustments', 'AdjustmentController', ['except' => ['edit', 'update', 'destroy']]);
-    Route::get('trackings', 'TrackingController@index');
+    Route::resource('adjustment', 'AdjustmentController', ['except' => ['edit', 'update', 'destroy']]);
+    Route::get('tracking', 'TrackingController@index');
 });
 
 

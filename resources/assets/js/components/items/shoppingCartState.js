@@ -33,12 +33,7 @@ export default {
                 this.data.cart[index].Quantity--
             }
         }
-    },
-
-    createSale(items) {
-        if (confirm('this process cannot be undone'))
-        {
-            console.log(items)
-        }
     }
+
+
 }

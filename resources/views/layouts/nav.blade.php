@@ -37,6 +37,8 @@
                                             aria-expanded="false">Inventories<span class="caret"></span></a>
                         <ul class="dropdown-menu">
                             <li><a href="{{ url('inventory/receiving') }}">Receiving</a></li>
+                            <li><a href="{{ url('inventory/adjustment') }}">Adjustment</a></li>
+                            <li><a href="{{ url('inventory/tracking') }}">Tracking</a></li>
                         </ul>
                     </li>
 

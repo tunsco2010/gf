@@ -1,6 +1,11 @@
 @extends('layouts.master')
 
 @section('content')
+    <ol class='breadcrumb'>
+        <li><a href='/inventory/receiving'>Inventories</a></li>
+        <li class='active'>Receiving</li>
+    </ol>
+
     <div class="container">
         <div class="row">
             <br>

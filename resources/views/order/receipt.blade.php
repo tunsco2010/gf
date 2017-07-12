@@ -13,10 +13,10 @@
         <li class='active'>Order</li>
     </ol>
 
-    <h2>Place Order</h2>
+    <h2>Receipt</h2>
     <hr>
 
-    <product-list></product-list>
+
 
 
 @endsection

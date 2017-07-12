@@ -47,7 +47,41 @@
 
         methods: {
                 checkout() {
-                    State.createSale(this.items)
+
+                    if (confirm('this process cannot be undone'))
+                    {
+                        axios({
+                            method: 'post',
+                            url: '/api/sales',
+                            data: {
+                                customer_id: this.form.customer.id,
+                                comments: this.form.comments,
+                                items: _.map(this.cart, function(cart){
+                                    return {
+                                        item_id: cart.id,
+                                        quantity: cart.quantity,
+                                        price: cart.price
+                                    }
+                                })
+                            }
+                        }).then(function(response) {
+                            let responseBody = response.body
+
+                            this.cart = []
+                            this.form.totalPayment = null
+                            this.form.comments = null
+                            this.form.customer = {}
+
+                            $.notify('Order created with <a href="/order/receipt/' + responseBody.id + '" target="_BLANK">INVOICE</a>', {
+                                type: 'success',
+                                placement: {
+                                    from: 'bottom'
+                                }
+                            })
+
+                            window.open('/order/receipt/' + responseBody.id)
+                        })
+                    }
                 }
         }
     }

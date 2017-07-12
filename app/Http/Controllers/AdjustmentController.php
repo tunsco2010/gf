@@ -14,7 +14,9 @@ class AdjustmentController extends Controller
      */
     public function index()
     {
-        //
+        $adjustments = Adjustment::all();
+
+        return view('inventory.adjustment.index', compact('adjustments'));
     }
 
     /**
@@ -24,7 +26,7 @@ class AdjustmentController extends Controller
      */
     public function create()
     {
-        //
+        return view('inventory.adjustment.create');
     }
 
     /**

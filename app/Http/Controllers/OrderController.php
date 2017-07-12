@@ -19,7 +19,7 @@ class OrderController extends Controller
      */
     public function index()
     {
-        return view('order.index');
+        //return view('order.index');
     }
 
     /**
@@ -30,6 +30,15 @@ class OrderController extends Controller
     public function create()
     {
         return view('order.create');
+    }
+
+    public function receipt($id)
+    {
+        $data = [
+            'order' => Order::findOrFail($id),
+        ];
+
+        return view('order.receipt', $data);
     }
 
     /**
