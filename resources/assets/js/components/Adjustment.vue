@@ -83,9 +83,11 @@
             },
 
             createAdjustment() {
+
                 if (confirm('this process cannot be undone'))
                 {
-                    this.$http.post('/api/adjustments', {
+                    var self = this;
+                    axios.post('/api/adjustments', {
                         comments: this.form.comments,
                         items: _.map(this.cart, (cart) => {
                             return {
@@ -94,17 +96,21 @@
                                 diff: (cart.adjustment - cart.quantity),
                             }
                         })
-                    }).then((response) => {
-                        this.cart = []
-                        this.form.comments = null
-
-                        $.notify('Adjustment created', {
-                            type: 'success',
-                            placement: {
-                                from: 'bottom'
-                            }
-                        })
                     })
+                        .then(function (response) {
+                            self.cart = []
+                            self.form.comments = null
+
+                            $.notify('Adjustment created', {
+                                type: 'success',
+                                placement: {
+                                    from: 'bottom'
+                                }
+                            })
+                        })
+                        .catch(function (error) {
+                            console.log(error);
+                        });
                 }
             }
         }

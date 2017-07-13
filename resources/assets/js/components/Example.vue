@@ -17,7 +17,17 @@
 <script>
     export default {
         mounted() {
-            console.log('Component mounted.')
+            //console.log('Component mounted.')
+            this.getUser();
+        },
+
+        methods: {
+            getUser() {
+                axios.get('/api/user')
+                    .then(response => {
+                        console.log(response.data);
+                    });
+            }
         }
     }
 </script>

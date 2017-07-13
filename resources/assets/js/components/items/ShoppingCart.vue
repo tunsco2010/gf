@@ -44,7 +44,6 @@
         },
 
         computed: {
-
             total() {
                 return _.sumBy(this.items, function(item) {
                     return (item.Price * item.Quantity)
@@ -57,7 +56,9 @@
 
                     if (confirm('this process cannot be undone'))
                     {
-                        this.$http.post('/api/sales', {
+                        var self = this;
+
+                        axios.post('/api/sales', {
                             customer_id: this.form.customer.id,
                             items: _.map(this.items, function(cart){
                                 return {
@@ -66,24 +67,25 @@
                                     price: cart.Price
                                 }
                             })
-                        }).then(function(response) {
-                            let responseBody = response.body
-
-                            this.cart = []
-                            //this.form.totalPayment = null
-//                           this.form.description = null
-                            this.form.customer = {}
-
-                            $.notify('Order created with <a href="/order/receipt/' + responseBody.id + '" target="_BLANK">INVOICE</a>', {
-                                type: 'success',
-                                placement: {
-                                    from: 'bottom'
-                                }
-                            })
-
-                            window.open('/order/receipt/' + responseBody.id)
                         })
+                            .then(function (response) {
+                                let responseBody = response.data
 
+                                self.items = []
+                                self.form.customer = {}
+
+                                $.notify('Order created with <a href="/order/receipt/' + responseBody.id + '" target="_BLANK">INVOICE</a>', {
+                                    type: 'success',
+                                    placement: {
+                                        from: 'bottom'
+                                    }
+                                })
+
+                                window.open('/order/receipt/' + responseBody.id)
+                            })
+                            .catch(function (error) {
+                                console.log(error);
+                            });
 
                     }
                 },

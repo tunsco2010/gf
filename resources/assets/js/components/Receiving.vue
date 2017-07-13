@@ -111,9 +111,11 @@
             },
 
             createReceiving() {
+
                 if (confirm('this process cannot be undone'))
                 {
-                    this.$http.post('/api/receivings', {
+                    var self = this;
+                    axios.post('/api/receivings', {
                         supplier_id: this.form.supplier.id,
                         comments: this.form.comments,
                         items: _.map(this.cart, (cart) => {
@@ -123,18 +125,21 @@
                                 price: cart.price
                             }
                         })
-                    }).then((response) => {
-                        this.cart = []
-                        this.form.comments = null
-                        this.form.supplier = {}
+                    }).then(function (response) {
 
-                        $.notify('Receivings Created', {
-                            type: 'success',
-                            placement: {
-                                from: 'bottom'
-                            }
-                        })
-                    })
+                            self.cart = []
+                            self.form.comments = null
+                            self.form.supplier = {}
+
+                            $.notify('Receivings Created', {
+                                type: 'success',
+                                placement: {
+                                    from: 'bottom'
+                                }
+                            })
+                        }).catch(function (error) {
+                            console.log(error);
+                        });
                 }
             }
         }
