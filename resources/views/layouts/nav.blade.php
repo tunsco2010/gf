@@ -20,9 +20,20 @@
                 @if (Auth::check())
 
                     <li><a href="/order/create">Sales</a></li>
-                    <li class="dropdown"><a href="#" class="dropdown-toggle"
+                    <li class="dropdown">
+                        <a href="#" class="dropdown-toggle"
+                           data-toggle="dropdown" role="button" aria-haspopup="true"
+                           aria-expanded="false">
+                            <i class="fa fa-money"></i>
+                            <span class="title">Expense Mgt</span>
+                            <span class="fa arrow caret"></span>
+                        </a>
+                    </li>
+                    <li class="dropdown">
+                        <a href="#" class="dropdown-toggle"
                                             data-toggle="dropdown" role="button" aria-haspopup="true"
-                                            aria-expanded="false">Manage Products<span class="caret"></span></a>
+                                            aria-expanded="false">Manage Products<span class="caret"></span>
+                        </a>
                         <ul class="dropdown-menu">
                             <li><a href="/product">Products</a></li>
                             <li><a href="/category">Categories</a></li>
@@ -31,10 +42,22 @@
                             <li><a href="/customer">Customers</a></li>
                         </ul>
                     </li>
+                    <li class="">
+                        <a href="#" class="dropdown-toggle"
+                           data-toggle="dropdown" role="button" aria-haspopup="true"
+                           aria-expanded="false">
+                            <i class="fa fa-hospital-o"></i>
+                            <span class="title">Health</span>
+                            <span class="fa arrow caret"></span>
+                        </a>
 
-                    <li class="dropdown"><a href="#" class="dropdown-toggle"
+                    </li>
+
+                    <li class="dropdown">
+                        <a href="#" class="dropdown-toggle"
                                             data-toggle="dropdown" role="button" aria-haspopup="true"
-                                            aria-expanded="false">Inventories<span class="caret"></span></a>
+                                            aria-expanded="false">Inventories<span class="caret"></span>
+                        </a>
                         <ul class="dropdown-menu">
                             <li><a href="{{ url('inventory/receiving') }}">Receiving</a></li>
                             <li><a href="{{ url('inventory/adjustment') }}">Adjustment</a></li>
