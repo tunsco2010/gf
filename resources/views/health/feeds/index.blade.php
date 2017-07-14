@@ -12,7 +12,7 @@
 
     <p>
         <a href="" class="btn btn-success">Add New</a>
-        
+
     </p>
 
 
@@ -36,7 +36,7 @@
                         <th>&nbsp;</th>
                     </tr>
                 </thead>
-                
+
                 <tbody>
                     @if (count($feeds) > 0)
                         @foreach ($feeds as $feed)
@@ -49,17 +49,17 @@
                                 <td>{{ $feed->description }}</td>
                                 <td>
 
-                                    <a href="{{ route('admin.feeds.show',[$feed->id]) }}" class="btn btn-xs btn-primary">@lang('quickadmin.qa_view')</a>
+                                    <a href="{{ route('health/feeds.show',[$feed->id]) }}" class="btn btn-xs btn-primary">view</a>
 
 
-                                    <a href="{{ route('admin.feeds.edit',[$feed->id]) }}" class="btn btn-xs btn-info">@lang('quickadmin.qa_edit')</a>
+                                    <a href="{{ route('health/feeds.edit',[$feed->id]) }}" class="btn btn-xs btn-info">edit</a>
 
                                     {!! Form::open(array(
                                         'style' => 'display: inline-block;',
                                         'method' => 'DELETE',
-                                        'onsubmit' => "return confirm('".trans("quickadmin.qa_are_you_sure")."');",
-                                        'route' => ['admin.feeds.destroy', $feed->id])) !!}
-                                    {!! Form::submit(trans('quickadmin.qa_delete'), array('class' => 'btn btn-xs btn-danger')) !!}
+                                        'onsubmit' => "return confirm('".trans("Are you sure?")."');",
+                                        'route' => ['health/feeds.destroy', $feed->id])) !!}
+                                    {!! Form::submit(trans('delete'), array('class' => 'btn btn-xs btn-danger')) !!}
                                     {!! Form::close() !!}
 
                                 </td>
@@ -76,7 +76,7 @@
     </div>
 @stop
 
-@section('javascript') 
+@section('javascript')
     <script>
         window.route_mass_crud_entries_destroy = '{{ route('feeds.mass_destroy') }}';
     </script>

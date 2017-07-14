@@ -59,6 +59,9 @@ Route::group(['prefix' => 'inventory'], function () {
     Route::get('tracking', 'TrackingController@index');
 });
 
+// Health (Feeds and Vaccine) Routes
+Route::resource('health/feeds', 'FeedController');
+Route::post('health/feeds_mass_destroy', ['uses' => 'FeedsController@massDestroy', 'as' => 'feeds.mass_destroy']);
 
 //test route
 Route::get('test', 'TestController@index');

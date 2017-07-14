@@ -49,6 +49,14 @@
                             <span class="title">Health</span>
                             <span class="fa arrow caret"></span>
                         </a>
+                        <ul class="dropdown-menu">
+                            <li class="">
+                                <a href="{{ url('health/feeds') }}">
+                                    <i class="fa fa-glass"></i>
+                                    <span class="title">Feed</span>
+                                </a>
+                            </li>
+                        </ul>
 
                     </li>
 
