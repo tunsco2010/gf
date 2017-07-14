@@ -11,7 +11,7 @@
     <h3 class="page-title">Feeds</h3>
 
     <p>
-        <a href="" class="btn btn-success">Add New</a>
+        <a href="/health/feeds/create" class="btn btn-success">Add New</a>
 
     </p>
 
@@ -41,7 +41,6 @@
                     @if (count($feeds) > 0)
                         @foreach ($feeds as $feed)
                             <tr data-entry-id="{{ $feed->id }}">
-
                                 <td></td>
                                 <td>{{ $feed->name }}</td>
                                 <td>{{ $feed->quantity }}</td>
@@ -49,16 +48,16 @@
                                 <td>{{ $feed->description }}</td>
                                 <td>
 
-                                    <a href="{{ route('health/feeds.show',[$feed->id]) }}" class="btn btn-xs btn-primary">view</a>
+                                    <a href="{{ url('health/feeds/show',[$feed->id]) }}" class="btn btn-xs btn-primary">view</a>
 
 
-                                    <a href="{{ route('health/feeds.edit',[$feed->id]) }}" class="btn btn-xs btn-info">edit</a>
+                                    <a href="{{ url('health/feeds/edit',[$feed->id]) }}" class="btn btn-xs btn-info">edit</a>
 
                                     {!! Form::open(array(
                                         'style' => 'display: inline-block;',
                                         'method' => 'DELETE',
                                         'onsubmit' => "return confirm('".trans("Are you sure?")."');",
-                                        'route' => ['health/feeds.destroy', $feed->id])) !!}
+                                        'url' => ['health/feeds/destroy', $feed->id])) !!}
                                     {!! Form::submit(trans('delete'), array('class' => 'btn btn-xs btn-danger')) !!}
                                     {!! Form::close() !!}
 

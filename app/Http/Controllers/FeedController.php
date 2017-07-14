@@ -7,6 +7,7 @@ use App\Feed;
 use App\Http\Requests\Admin\StoreFeedsRequest;
 use App\Http\Requests\Admin\UpdateFeedsRequest;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Redirect;
 
 class FeedController extends Controller
 {
@@ -40,10 +41,17 @@ class FeedController extends Controller
      * Store a newly created resource in storage.
      *
      */
-    public function store(StoreFeedsRequest $request)
+    public function store(Request $request)
     {
+        $this->validate($request, [
+            'name' => 'required',
+
+        ]);
+
         $feed = Feed::create($request->all());
-        return redirect()->route('health.feeds.index');
+        $feed->save();
+        alert()->success('Congrats!', 'You added a Feed');
+        return Redirect::route('health.feeds.index');
 
     }
 
@@ -53,13 +61,14 @@ class FeedController extends Controller
      * @param  \App\Feed  $feed
      * @return \Illuminate\Http\Response
      */
-    public function show($id)
+    public function show(Feed $id)
     {
-        $consumptions = Consumption::where('stock_id', $id)->get();
+        //$consumptions = Consumption::where('stock_id', $id)->get();
 
         $feed = Feed::findOrFail($id);
 
-        return view('health.feeds.show', compact('feed', 'consumptions'));
+        return view('health.feeds.show', compact('feed'));
+        //return view('health.feeds.show', compact('feed', 'consumptions'));
 
     }
 

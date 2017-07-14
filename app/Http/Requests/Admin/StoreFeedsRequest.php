@@ -10,10 +10,6 @@ class StoreFeedsRequest extends FormRequest
      *
      * @return bool
      */
-    public function authorize()
-    {
-        return true;
-    }
 
     /**
      * Get the validation rules that apply to the request.
@@ -25,8 +21,6 @@ class StoreFeedsRequest extends FormRequest
         return [
             'name' => 'required',
             'quantity' => 'required',
-            'date' => 'date_format:'.config('app.date_format'),
-            'description' => 'required',
         ];
     }
 }
