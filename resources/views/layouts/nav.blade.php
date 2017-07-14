@@ -18,7 +18,6 @@
             <ul class="nav navbar-nav">
 
                 @if (Auth::check())
-
                     <li><a href="/order/create">Sales</a></li>
                     <li class="dropdown">
                         <a href="#" class="dropdown-toggle"
