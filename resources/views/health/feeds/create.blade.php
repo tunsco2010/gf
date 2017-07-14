@@ -1,12 +1,19 @@
-@extends('layouts.app')
+@extends('layouts.master')
+
+@section('title')
+
+    <title>Create Feeds</title>
+
+@endsection
 
 @section('content')
-    <h3 class="page-title">@lang('quickadmin.feed.title')</h3>
-    {!! Form::open(['method' => 'POST', 'route' => ['admin.feeds.store']]) !!}
+    <h3 class="page-title">Create Feed</h3>
+    {!! Form::open(['url' => 'health/feeds/create']) !!}
+    {{--{!! Form::open(['method' => 'POST', 'route' => ['health.feeds.store']]) !!}--}}
 
     <div class="panel panel-default">
         <div class="panel-heading">
-            @lang('quickadmin.qa_create')
+           Create
         </div>
         
         <div class="panel-body">
@@ -62,7 +69,7 @@
         </div>
     </div>
 
-    {!! Form::submit(trans('quickadmin.qa_save'), ['class' => 'btn btn-danger']) !!}
+    {!! Form::submit(trans('Save'), ['class' => 'form-control btn btn-danger']) !!}
     {!! Form::close() !!}
 @stop
 

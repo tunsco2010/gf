@@ -2,11 +2,18 @@
 
 namespace App\Http\Controllers;
 
+use App\Consumption;
 use App\Feed;
+use App\Http\Requests\Admin\StoreFeedsRequest;
+use App\Http\Requests\Admin\UpdateFeedsRequest;
 use Illuminate\Http\Request;
 
 class FeedController extends Controller
 {
+    public function __construct()
+    {
+        $this->middleware('auth');
+    }
     /**
      * Display a listing of the resource.
      *
@@ -26,18 +33,18 @@ class FeedController extends Controller
      */
     public function create()
     {
-        //
+        return view('health.feeds.create');
     }
 
     /**
      * Store a newly created resource in storage.
      *
-     * @param  \Illuminate\Http\Request  $request
-     * @return \Illuminate\Http\Response
      */
-    public function store(Request $request)
+    public function store(StoreFeedsRequest $request)
     {
-        //
+        $feed = Feed::create($request->all());
+        return redirect()->route('health.feeds.index');
+
     }
 
     /**
@@ -46,9 +53,14 @@ class FeedController extends Controller
      * @param  \App\Feed  $feed
      * @return \Illuminate\Http\Response
      */
-    public function show(Feed $feed)
+    public function show($id)
     {
-        //
+        $consumptions = Consumption::where('stock_id', $id)->get();
+
+        $feed = Feed::findOrFail($id);
+
+        return view('health.feeds.show', compact('feed', 'consumptions'));
+
     }
 
     /**
@@ -57,21 +69,19 @@ class FeedController extends Controller
      * @param  \App\Feed  $feed
      * @return \Illuminate\Http\Response
      */
-    public function edit(Feed $feed)
+    public function edit(Feed $id)
     {
-        //
+        $feed = Feed::findOrFail($id);
+        return view('health.feeds.edit', compact('feed'));
+
     }
 
-    /**
-     * Update the specified resource in storage.
-     *
-     * @param  \Illuminate\Http\Request  $request
-     * @param  \App\Feed  $feed
-     * @return \Illuminate\Http\Response
-     */
-    public function update(Request $request, Feed $feed)
+
+    public function update(UpdateFeedsRequest $request, Feed $id)
     {
-        //
+        $feed = Feed::findOrFail($id);
+        $feed->update($request->all());
+        return redirect()->route('health.feeds.index');
     }
 
     /**
@@ -80,9 +90,13 @@ class FeedController extends Controller
      * @param  \App\Feed  $feed
      * @return \Illuminate\Http\Response
      */
-    public function destroy(Feed $feed)
+    public function destroy(Feed $id)
     {
-        //
+        $feed = Feed::findOrFail($id);
+        $feed->delete();
+
+        return redirect()->route('health.feeds.index');
+
     }
 
     /**
