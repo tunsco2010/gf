@@ -1,11 +1,11 @@
 @extends('layouts.app')
 
 @section('content')
-    <h3 class="page-title">@lang('quickadmin.feed.title')</h3>
+    <h3 class="page-title">Feed</h3>
 
     <div class="panel panel-default">
         <div class="panel-heading">
-            @lang('quickadmin.qa_view')
+            View
         </div>
 
         <div class="panel-body">
@@ -13,19 +13,19 @@
                 <div class="col-md-6">
                     <table class="table table-bordered table-striped">
                         <tr>
-                            <th>@lang('quickadmin.feed.fields.name')</th>
+                            <th>Name</th>
                             <td>{{ $feed->name }}</td>
                         </tr>
                         <tr>
-                            <th>@lang('quickadmin.feed.fields.quantity')</th>
+                            <th>Quantity</th>
                             <td>{{ $feed->quantity }}</td>
                         </tr>
                         <tr>
-                            <th>@lang('quickadmin.feed.fields.date')</th>
+                            <th>Date</th>
                             <td>{{ $feed->date }}</td>
                         </tr>
                         <tr>
-                            <th>@lang('quickadmin.feed.fields.description')</th>
+                            <th>Description</th>
                             <td>{{ $feed->description }}</td>
                         </tr>
                     </table>
@@ -43,17 +43,16 @@
 <table class="table table-bordered table-striped {{ count($consumptions) > 0 ? 'datatable' : '' }}">
     <thead>
         <tr>
-            <th>@lang('quickadmin.consumption.fields.user')</th>
-                        <th>@lang('quickadmin.users.fields.name')</th>
-                        <th>@lang('quickadmin.consumption.fields.quantity')</th>
-                        <th>@lang('quickadmin.consumption.fields.date')</th>
-                        <th>@lang('quickadmin.consumption.fields.description')</th>
-                        <th>@lang('quickadmin.consumption.fields.stock')</th>
-                        <th>@lang('quickadmin.feed.fields.name')</th>
-                        <th>@lang('quickadmin.feed.fields.quantity')</th>
-                        <th>@lang('quickadmin.feed.fields.date')</th>
-                        <th>@lang('quickadmin.feed.fields.description')</th>
-                        <th>&nbsp;</th>
+            <th>User</th>
+            <th>Name</th>
+            <th>Quantity</th>
+            <th>Date</th>
+            <th>Description</th>
+            <th>Stock</th>
+            <th>Name</th>
+            <th>Quantity</th>
+            <th>Date</th>
+            <th>&nbsp;</th>
         </tr>
     </thead>
 
@@ -70,21 +69,18 @@
 <td>{{ isset($consumption->stock) ? $consumption->stock->name : '' }}</td>
 <td>{{ isset($consumption->stock) ? $consumption->stock->quantity : '' }}</td>
 <td>{{ isset($consumption->stock) ? $consumption->stock->date : '' }}</td>
-<td>{{ isset($consumption->stock) ? $consumption->stock->description : '' }}</td>
                                 <td>
-                                    @can('consumption_view')
-                                    <a href="{{ route('admin.consumptions.show',[$consumption->id]) }}" class="btn btn-xs btn-primary">@lang('quickadmin.qa_view')</a>
-                                    @endcan
-                                    @can('consumption_edit')
-                                    <a href="{{ route('admin.consumptions.edit',[$consumption->id]) }}" class="btn btn-xs btn-info">@lang('quickadmin.qa_edit')</a>
-                                    @endcan
-                                    @can('consumption_delete')
+
+                                    <a href="{{ route('health.consumptions.show',[$consumption->id]) }}" class="btn btn-xs btn-primary">@lang('quickadmin.qa_view')</a>
+
+                                    <a href="{{ route('health.consumptions.edit',[$consumption->id]) }}" class="btn btn-xs btn-info">@lang('quickadmin.qa_edit')</a>
+
                                     {!! Form::open(array(
                                         'style' => 'display: inline-block;',
                                         'method' => 'DELETE',
-                                        'onsubmit' => "return confirm('".trans("quickadmin.qa_are_you_sure")."');",
-                                        'route' => ['admin.consumptions.destroy', $consumption->id])) !!}
-                                    {!! Form::submit(trans('quickadmin.qa_delete'), array('class' => 'btn btn-xs btn-danger')) !!}
+                                        'onsubmit' => "return confirm('".trans("Are_you_sure")."');",
+                                        'url' => ['health/consumptions/destroy', $consumption->id])) !!}
+                                    {!! Form::submit(trans('delete'), array('class' => 'btn btn-xs btn-danger')) !!}
                                     {!! Form::close() !!}
                                     @endcan
                                 </td>
@@ -92,7 +88,7 @@
             @endforeach
         @else
             <tr>
-                <td colspan="9">@lang('quickadmin.qa_no_entries_in_table')</td>
+                <td colspan="9">No entries in table</td>
             </tr>
         @endif
     </tbody>
@@ -102,7 +98,7 @@
 
             <p>&nbsp;</p>
 
-            <a href="{{ route('admin.feeds.index') }}" class="btn btn-default">@lang('quickadmin.qa_back_to_list')</a>
+            <a href="{{ route('health.feeds.index') }}" class="btn btn-default">back_to_list</a>
         </div>
     </div>
 @stop

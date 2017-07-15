@@ -8,9 +8,10 @@
 
 @section('content')
     <h3 class="page-title">Create Feed</h3>
-    {!! Form::open(['action'=>'FeedController@store','method' => 'POST']) !!}
+    {{--{!! Form::open(['action'=>'FeedController@store','method' => 'POST']) !!}--}}
     {{--{!! Form::open(['method' => 'POST', 'route' => ['health.feeds.store']]) !!}--}}
-
+    {!! Form::open(['method' => 'POST', 'url' => ['health/feeds/store']]) !!}
+    {{ csrf_field() }}
     <div class="panel panel-default">
         <div class="panel-heading">
            Create
@@ -69,7 +70,7 @@
             
         </div>
     </div>
-    {!! csrf_field() !!}
+
     {!! Form::submit(trans('Save'), ['class' => 'form-control btn btn-danger']) !!}
     {!! Form::close() !!}
 @stop
