@@ -2,7 +2,7 @@
 
 @section('content')
     <h3 class="page-title">@lang('quickadmin.vacinecategory.title')</h3>
-    {!! Form::open(['method' => 'POST', 'route' => ['admin.vacinecategories.store']]) !!}
+    {!! Form::open(['method' => 'POST', 'route' => ['vacinecategories.store']]) !!}
 
     <div class="panel panel-default">
         <div class="panel-heading">
@@ -41,7 +41,7 @@
                 </thead>
                 <tbody id="vacine">
                     @foreach(old('vacines', []) as $index => $data)
-                        @include('admin.vacinecategories.vacines_row', [
+                        @include('vacinecategories.vacines_row', [
                             'index' => $index
                         ])
                     @endforeach
@@ -59,7 +59,7 @@
     @parent
 
     <script type="text/html" id="vacine-template">
-        @include('admin.vacinecategories.vacines_row', [
+        @include('vacinecategories.vacines_row', [
             'index' => '_INDEX_'
         ])
     </script>
