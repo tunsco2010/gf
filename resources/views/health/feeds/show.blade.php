@@ -82,7 +82,7 @@
                                         'url' => ['health/consumptions/destroy', $consumption->id])) !!}
                                     {!! Form::submit(trans('delete'), array('class' => 'btn btn-xs btn-danger')) !!}
                                     {!! Form::close() !!}
-                                    @endcan
+
                                 </td>
                 </tr>
             @endforeach

@@ -19,7 +19,13 @@ class Consumption extends Model
 {
     use SoftDeletes;
 
-    protected $fillable = ['quantity', 'date', 'description', 'user_id', 'stock_id'];
+    protected $fillable = [
+        'quantity',
+        'date',
+        'description',
+        'user_id',
+        'stock_id'
+    ];
     
 
     /**
@@ -37,7 +43,7 @@ class Consumption extends Model
      */
     public function setQuantityAttribute($input)
     {
-        $this->attributes['quantity'] = $input ? $input : null;
+        $this->attributes['quantity'] = $input ? $input : 0;
     }
 
     /**

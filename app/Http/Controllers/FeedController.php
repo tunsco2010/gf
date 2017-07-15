@@ -45,9 +45,11 @@ class FeedController extends Controller
     {
         $this->validate($request, [
             'name' => 'required',
+            'date'=> 'required'
 
         ]);
 
+        $request->date = $request->date->date_format('Y-m-d');
         $feed = Feed::create($request->all());
         $feed->save();
         alert()->success('Congrats!', 'You added a Feed');

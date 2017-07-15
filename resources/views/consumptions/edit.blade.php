@@ -3,7 +3,7 @@
 @section('content')
     <h3 class="page-title">@lang('quickadmin.consumption.title')</h3>
     
-    {!! Form::model($consumption, ['method' => 'PUT', 'route' => ['admin.consumptions.update', $consumption->id]]) !!}
+    {!! Form::model($consumption, ['method' => 'PUT', 'route' => ['consumptions.update', $consumption->id]]) !!}
 
     <div class="panel panel-default">
         <div class="panel-heading">
@@ -38,7 +38,7 @@
             <div class="row">
                 <div class="col-xs-12 form-group">
                     {!! Form::label('date', 'Date*', ['class' => 'control-label']) !!}
-                    {!! Form::text('date', old('date'), ['class' => 'form-control date', 'placeholder' => '', 'required' => '']) !!}
+                    <input type="date" name="date" class="form-control" placeholder="" required>
                     <p class="help-block"></p>
                     @if($errors->has('date'))
                         <p class="help-block">

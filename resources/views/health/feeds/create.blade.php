@@ -46,7 +46,7 @@
             <div class="row">
                 <div class="col-xs-12 form-group">
                     {!! Form::label('date', 'Date supplied', ['class' => 'control-label']) !!}
-                    {!! Form::text('date', old('date'), ['class' => 'form-control date', 'placeholder' => 'Supplied Date']) !!}
+                    {!! Form::date('date', old('date'), ['class' => 'form-control date', 'placeholder' => 'Supplied Date']) !!}
                     <p class="help-block">Supplied Date</p>
                     @if($errors->has('date'))
                         <p class="help-block">
@@ -80,7 +80,7 @@
     <script>
         $('.date').datepicker({
             autoclose: true,
-            dateFormat: "{{ config('app.date_format_js') }}"
+            dateFormat: "{{ config('Y-m-d') }}"
         });
     </script>
 

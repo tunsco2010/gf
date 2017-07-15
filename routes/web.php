@@ -59,10 +59,15 @@ Route::group(['prefix' => 'inventory'], function () {
     Route::get('tracking', 'TrackingController@index');
 });
 
-// Health (Feeds and Vaccine) Routes
+// Health (Feeds) Routes
 Route::resource('health/feeds', 'FeedController', ['except' => ['edit', 'update', 'destroy']]);
 Route::post('health/feeds/store', 'FeedController@store');
 Route::post('health/feeds_mass_destroy', ['uses' => 'FeedController@massDestroy', 'as' => 'feeds.mass_destroy']);
+
+// Health (Consumption) Routes
+Route::resource('health/consumptions', 'ConsumptionController', ['except' => ['edit', 'update', 'destroy']]);
+//Route::post('health/consumptions/store', 'ConsumptionController@store');
+Route::post('health/consumptions_mass_destroy', ['uses' => 'ConsumptionController@massDestroy', 'as' => 'feeds.mass_destroy']);
 
 //test route
 Route::get('test', 'TestController@index');

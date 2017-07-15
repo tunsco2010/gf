@@ -1,10 +1,17 @@
-@extends('layouts.app')
+@extends('layouts.master')
+
+@section('title')
+
+    <title>Request Bag(s) Feed</title>
+
+@endsection
 
 @section('content')
     <h3 class="page-title">@lang('quickadmin.consumption.title')</h3>
-    {!! Form::open(['method' => 'POST', 'route' => ['admin.consumptions.store']]) !!}
-
-    <div class="panel panel-default">
+    {{--{!! Form::open(['method' => 'POST', 'url' => ['health/consumptions/store']]) !!}--}}
+    {{ Form::open(array('action' => 'ConsumptionController@store')) }}
+    {{ csrf_field() }}
+    <div class="panel panel-primary">
         <div class="panel-heading">
             @lang('quickadmin.qa_create')
         </div>
@@ -37,7 +44,7 @@
             <div class="row">
                 <div class="col-xs-12 form-group">
                     {!! Form::label('date', 'Date*', ['class' => 'control-label']) !!}
-                    {!! Form::text('date', old('date'), ['class' => 'form-control date', 'placeholder' => '', 'required' => '']) !!}
+                    {!! Form::date('date', old('date'), ['class' => 'form-control date', 'placeholder' => '', 'required' => '']) !!}
                     <p class="help-block"></p>
                     @if($errors->has('date'))
                         <p class="help-block">
@@ -69,10 +76,10 @@
 @section('javascript')
     @parent
     <script>
-        $('.date').datepicker({
-            autoclose: true,
-            dateFormat: "{{ config('app.date_format_js') }}"
-        });
+        {{--$('.date').datepicker({--}}
+            {{--autoclose: true,--}}
+            {{--dateFormat: "{{ config('app.date_format_js') }}"--}}
+        {{--});--}}
     </script>
 
 @stop
