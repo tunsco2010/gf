@@ -8,8 +8,9 @@
 
 @section('content')
     <h3 class="page-title">@lang('quickadmin.consumption.title')</h3>
-    {{--{!! Form::open(['method' => 'POST', 'url' => ['health/consumptions/store']]) !!}--}}
-    {{ Form::open(array('action' => 'ConsumptionController@store')) }}
+    <form class="form" role="form" method="POST" action="{{ url('/health/consumptions') }}">
+    {{--{!! Form::open(['method' => 'POST', 'url' => ['health/consumptions'], 'name'=>'create']) !!}--}}
+    {{--{{ Form::open(array('action' => 'ConsumptionController@store')) }}--}}
     {{ csrf_field() }}
     <div class="panel panel-primary">
         <div class="panel-heading">
@@ -29,6 +30,25 @@
                     @endif
                 </div>
             </div>
+            <div class="row">
+                <div class="col-xs-12 form-group">
+                    {!! Form::label('stock_id', 'Feed *', ['class' => 'control-label']) !!}
+                    <select class="form-control" name="stock_id" id="stock_id">
+                        @foreach($stock_id as $listofitem)
+                            <option class="" value="{{ $listofitem->id }}">{{ $listofitem->name }}<span> ({{ $listofitem->quantity }})</span></option>
+                        @endforeach
+                    </select>
+                   <p class="help-block"> Feed Category </p>
+                    @if($errors->has('stock_id'))
+                        <p class="help-block">
+                            {{ $errors->first('stock_id') }}
+                        </p>
+                    @endif
+
+                </div>
+            </div>
+
+
             <div class="row">
                 <div class="col-xs-12 form-group">
                     {!! Form::label('quantity', 'Quantity*', ['class' => 'control-label']) !!}

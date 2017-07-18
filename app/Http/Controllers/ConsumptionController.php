@@ -4,13 +4,16 @@ namespace App\Http\Controllers;
 
 use App\Consumption;
 use App\Http\Requests\Admin\StoreConsumptionsRequest;
+use App\Http\Requests\Admin\UpdateConsumptionsRequest;
 use Illuminate\Http\Request;
 
 class ConsumptionController extends Controller
 {
+
     public function __construct()
     {
         $this->middleware('auth');
+
     }
 
     public function index()
@@ -28,21 +31,39 @@ class ConsumptionController extends Controller
     public function create()
     {
         $users = \App\User::get()->pluck('name', 'id')->prepend('Please select', '');
-        $stocks = \App\Feed::get()->pluck('quantity', 'id')->prepend('Please select', '');
+        $stocks = \App\Feed::get()->pluck('name', 'id')->prepend('Please select', '');
+        $stock_id = \App\Feed::get()->all();
+               //var_dump($stock_id);
 
-        return view('consumptions.create', compact('users', 'stocks'));
+        return view('consumptions.create', compact('users', 'stocks','stock_id'));
 
     }
 
     /**
      * Store a newly created resource in storage.
      *
-     * @param  \Illuminate\Http\Request  $request
-     * @return \Illuminate\Http\Response
      */
-    public function store(StoreConsumptionsRequest $request)
+    public function store(Request $request)
     {
-        $consumption = Consumption::create($request->all());
+
+        $consumpt = Consumption::create([
+            'user_id' => $request->user_id,
+            'quantity' => $request->quantity,
+            'date' => $request->date,
+            'description' => $request->description,
+            'stock_id' => $request->stock_id
+        ]);
+//        $category = new Consumption;
+////
+//        $category->user_id = $request->get('name');
+//        $category->quantity = $request->get('quantity');
+//        $category->date = $request->get('date');
+//        $category->description= $request->get('description');
+//        $category->stock_id = $request->get('stock_id');
+
+        $consumpt->save();
+
+//        $consumption = Consumption::create($request->all());
 
         alert()->success('Congrats!', 'You Collected '.$request->quantity .' Bag(s) of Feed');
         return redirect()->route('consumptions.index');
@@ -70,7 +91,16 @@ class ConsumptionController extends Controller
      */
     public function edit(Consumption $consumption)
     {
-        //
+        if (! Gate::allows('consumption_edit')) {
+            return abort(401);
+        }
+        $users = \App\User::get()->pluck('name', 'id')->prepend('Please select', '');
+        $stocks = \App\Feed::get()->pluck('quantity', 'id')->prepend('Please select', '');
+
+        $consumption = Consumption::findOrFail($consumption);
+
+        return view('consumptions.edit', compact('consumption', 'users', 'stocks'));
+
     }
 
     /**
@@ -80,9 +110,12 @@ class ConsumptionController extends Controller
      * @param  \App\Consumption  $consumption
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, Consumption $consumption)
+    public function update(UpdateConsumptionsRequest $request, Consumption $consumption)
     {
         //
+        $consumption = Consumption::findOrFail($consumption);
+        $consumption->update($request->all());
+        return redirect()->route('consumptions.index');
     }
 
     /**
@@ -94,5 +127,24 @@ class ConsumptionController extends Controller
     public function destroy(Consumption $consumption)
     {
         //
+        $consumption = Consumption::findOrFail($consumption);
+        $consumption->delete();
+
+        return redirect()->route('consumptions.index');
+    }
+    /**
+     * Delete all selected Consumption at once.
+     *
+     * @param Request $request
+     */
+    public function massDestroy(Request $request)
+    {
+        if ($request->input('ids')) {
+            $entries = Consumption::whereIn('id', $request->input('ids'))->get();
+
+            foreach ($entries as $entry) {
+                $entry->delete();
+            }
+        }
     }
 }

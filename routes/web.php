@@ -60,14 +60,18 @@ Route::group(['prefix' => 'inventory'], function () {
 });
 
 // Health (Feeds) Routes
-Route::resource('health/feeds', 'FeedController', ['except' => ['edit', 'update', 'destroy']]);
+Route::resource('health/feeds', 'FeedController');
 Route::post('health/feeds/store', 'FeedController@store');
 Route::post('health/feeds_mass_destroy', ['uses' => 'FeedController@massDestroy', 'as' => 'feeds.mass_destroy']);
 
 // Health (Consumption) Routes
-Route::resource('health/consumptions', 'ConsumptionController', ['except' => ['edit', 'update', 'destroy']]);
-//Route::post('health/consumptions/store', 'ConsumptionController@store');
+Route::resource('health/consumptions', 'ConsumptionController');
+Route::get('health/consumptions/create', 'ConsumptionController@create')->name('consumptions.create');
 Route::post('health/consumptions_mass_destroy', ['uses' => 'ConsumptionController@massDestroy', 'as' => 'feeds.mass_destroy']);
+
+Route::resource('health/vacinecategories', 'VacinecategoriesController');
+Route::post('health/vacinecategories_mass_destroy', ['uses' => 'VacinecategoriesController@massDestroy', 'as' => 'vacinecategories.mass_destroy']);
+
 
 //test route
 Route::get('test', 'TestController@index');

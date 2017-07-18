@@ -4,17 +4,21 @@ namespace App\Http\Controllers;
 
 use App\Vacinecategory;
 use Illuminate\Http\Request;
+use App\Http\Requests\Admin\StoreVacinecategoriesRequest;
+use App\Http\Requests\Admin\UpdateVacinecategoriesRequest;
+
 
 class VacinecategoriesController extends Controller
 {
     /**
-     * Display a listing of the resource.
+     * Display a listing of the vaccine resource.
      *
      * @return \Illuminate\Http\Response
      */
     public function index()
     {
-        //
+        echo"I am here in side it....<br/>";
+        return Vacinecategory::all();
     }
 
     /**
@@ -24,7 +28,7 @@ class VacinecategoriesController extends Controller
      */
     public function create()
     {
-        //
+        echo"I am here in side create....<br/>";
     }
 
     /**
@@ -33,9 +37,11 @@ class VacinecategoriesController extends Controller
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
-    public function store(Request $request)
+    public function store(StoreVacinecategoriesRequest $request)
     {
-        //
+        echo"I am here in side it Store....<br/>";
+        $vacinecategory = Vacinecategory::create($request->all());
+        return $vacinecategory;
     }
 
     /**
@@ -44,9 +50,10 @@ class VacinecategoriesController extends Controller
      * @param  \App\Vacinecategory  $vacinecategory
      * @return \Illuminate\Http\Response
      */
-    public function show(Vacinecategory $vacinecategory)
+    public function show(Vacinecategory $id)
     {
-        //
+        return Vacinecategory::findOrFail($id);
+        echo"I am here in side Show<br/>";
     }
 
     /**
@@ -58,6 +65,7 @@ class VacinecategoriesController extends Controller
     public function edit(Vacinecategory $vacinecategory)
     {
         //
+        echo"I am here in side edit....<br/>";
     }
 
     /**
@@ -67,9 +75,11 @@ class VacinecategoriesController extends Controller
      * @param  \App\Vacinecategory  $vacinecategory
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, Vacinecategory $vacinecategory)
+    public function update(UpdateVacinecategoriesRequest $request, Vacinecategory $id)
     {
-        //
+        $vacinecategory = Vacinecategory::findOrFail($id);
+        $vacinecategory->update($request->all());
+        return $vacinecategory;
     }
 
     /**
@@ -78,8 +88,10 @@ class VacinecategoriesController extends Controller
      * @param  \App\Vacinecategory  $vacinecategory
      * @return \Illuminate\Http\Response
      */
-    public function destroy(Vacinecategory $vacinecategory)
+    public function destroy($id)
     {
-        //
+        $vacinecategory = Vacinecategory::findOrFail($id);
+        $vacinecategory->delete();
+        return '';
     }
 }
