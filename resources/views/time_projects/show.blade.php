@@ -1,4 +1,4 @@
-@extends('layouts.app')
+@extends('layouts.master')
 
 @section('content')
     <h3 class="page-title">@lang('quickadmin.time-projects.title')</h3>
@@ -48,21 +48,19 @@
                                 <td>{{ $time_entry->start_time }}</td>
                                 <td>{{ $time_entry->end_time }}</td>
                                 <td>
-                                    @can('time_entry_view')
-                                    <a href="{{ route('admin.time_entries.show',[$time_entry->id]) }}" class="btn btn-xs btn-primary">@lang('quickadmin.qa_view')</a>
-                                    @endcan
-                                    @can('time_entry_edit')
-                                    <a href="{{ route('admin.time_entries.edit',[$time_entry->id]) }}" class="btn btn-xs btn-info">@lang('quickadmin.qa_edit')</a>
-                                    @endcan
-                                    @can('time_entry_delete')
+
+                                    <a href="{{ route('time_entries.show',[$time_entry->id]) }}" class="btn btn-xs btn-primary">@lang('quickadmin.qa_view')</a>
+
+                                    <a href="{{ route('time_entries.edit',[$time_entry->id]) }}" class="btn btn-xs btn-info">@lang('quickadmin.qa_edit')</a>
+
                                     {!! Form::open(array(
                                         'style' => 'display: inline-block;',
                                         'method' => 'DELETE',
                                         'onsubmit' => "return confirm('".trans("quickadmin.qa_are_you_sure")."');",
-                                        'route' => ['admin.time_entries.destroy', $time_entry->id])) !!}
+                                        'route' => ['time_entries.destroy', $time_entry->id])) !!}
                                     {!! Form::submit(trans('quickadmin.qa_delete'), array('class' => 'btn btn-xs btn-danger')) !!}
                                     {!! Form::close() !!}
-                                    @endcan
+
                                 </td>
                 </tr>
             @endforeach
@@ -75,10 +73,8 @@
 </table>
 </div>
 </div>
-
             <p>&nbsp;</p>
-
-            <a href="{{ route('admin.time_projects.index') }}" class="btn btn-default">@lang('quickadmin.qa_back_to_list')</a>
+            <a href="{{ route('time_projects.index') }}" class="btn btn-default">@lang('quickadmin.qa_back_to_list')</a>
         </div>
     </div>
 @stop

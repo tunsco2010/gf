@@ -1,6 +1,6 @@
 <?php
 
-namespace App\Http\Controllers\Admin;
+namespace App\Http\Controllers;
 
 use App\TimeWorkType;
 use Illuminate\Http\Request;
@@ -18,13 +18,9 @@ class TimeWorkTypesController extends Controller
      */
     public function index()
     {
-        if (! Gate::allows('time_work_type_access')) {
-            return abort(401);
-        }
+       $time_work_types = TimeWorkType::all();
 
-        $time_work_types = TimeWorkType::all();
-
-        return view('admin.time_work_types.index', compact('time_work_types'));
+        return view('time_work_types.index', compact('time_work_types'));
     }
 
     /**
@@ -34,28 +30,20 @@ class TimeWorkTypesController extends Controller
      */
     public function create()
     {
-        if (! Gate::allows('time_work_type_create')) {
-            return abort(401);
-        }
-        return view('admin.time_work_types.create');
+
+        return view('time_work_types.create');
     }
 
     /**
      * Store a newly created TimeWorkType in storage.
      *
-     * @param  \App\Http\Requests\StoreTimeWorkTypesRequest  $request
      * @return \Illuminate\Http\Response
      */
     public function store(StoreTimeWorkTypesRequest $request)
     {
-        if (! Gate::allows('time_work_type_create')) {
-            return abort(401);
-        }
+
         $time_work_type = TimeWorkType::create($request->all());
-
-
-
-        return redirect()->route('admin.time_work_types.index');
+        return redirect()->route('time_work_types.index');
     }
 
 
@@ -67,30 +55,23 @@ class TimeWorkTypesController extends Controller
      */
     public function edit($id)
     {
-        if (! Gate::allows('time_work_type_edit')) {
-            return abort(401);
-        }
+
         $time_work_type = TimeWorkType::findOrFail($id);
 
-        return view('admin.time_work_types.edit', compact('time_work_type'));
+        return view('time_work_types.edit', compact('time_work_type'));
     }
 
     /**
      * Update TimeWorkType in storage.
      *
-     * @param  \App\Http\Requests\UpdateTimeWorkTypesRequest  $request
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
     public function update(UpdateTimeWorkTypesRequest $request, $id)
     {
-        if (! Gate::allows('time_work_type_edit')) {
-            return abort(401);
-        }
+
         $time_work_type = TimeWorkType::findOrFail($id);
         $time_work_type->update($request->all());
-
-
 
         return redirect()->route('admin.time_work_types.index');
     }
@@ -104,14 +85,11 @@ class TimeWorkTypesController extends Controller
      */
     public function show($id)
     {
-        if (! Gate::allows('time_work_type_view')) {
-            return abort(401);
-        }
         $time_entries = \App\TimeEntry::where('work_type_id', $id)->get();
 
         $time_work_type = TimeWorkType::findOrFail($id);
 
-        return view('admin.time_work_types.show', compact('time_work_type', 'time_entries'));
+        return view('time_work_types.show', compact('time_work_type', 'time_entries'));
     }
 
 
@@ -123,13 +101,11 @@ class TimeWorkTypesController extends Controller
      */
     public function destroy($id)
     {
-        if (! Gate::allows('time_work_type_delete')) {
-            return abort(401);
-        }
+
         $time_work_type = TimeWorkType::findOrFail($id);
         $time_work_type->delete();
 
-        return redirect()->route('admin.time_work_types.index');
+        return redirect()->route('time_work_types.index');
     }
 
     /**
@@ -139,9 +115,7 @@ class TimeWorkTypesController extends Controller
      */
     public function massDestroy(Request $request)
     {
-        if (! Gate::allows('time_work_type_delete')) {
-            return abort(401);
-        }
+
         if ($request->input('ids')) {
             $entries = TimeWorkType::whereIn('id', $request->input('ids'))->get();
 

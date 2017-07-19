@@ -1,10 +1,10 @@
-@extends('layouts.app')
+@extends('layouts.master')
 
 @section('content')
     <h3 class="page-title">@lang('quickadmin.time-projects.title')</h3>
     @can('time_project_create')
     <p>
-        <a href="{{ route('admin.time_projects.create') }}" class="btn btn-success">@lang('quickadmin.qa_add_new')</a>
+        <a href="{{ route('time_projects.create') }}" class="btn btn-success">@lang('quickadmin.qa_add_new')</a>
         
     </p>
     @endcan
@@ -15,12 +15,12 @@
         </div>
 
         <div class="panel-body table-responsive">
-            <table class="table table-bordered table-striped {{ count($time_projects) > 0 ? 'datatable' : '' }} @can('time_project_delete') dt-select @endcan">
+            <table class="table table-bordered table-striped {{ count($time_projects) > 0 ? 'datatable' : '' }}  dt-select">
                 <thead>
                     <tr>
-                        @can('time_project_delete')
+
                             <th style="text-align:center;"><input type="checkbox" id="select-all" /></th>
-                        @endcan
+
 
                         <th>@lang('quickadmin.time-projects.fields.name')</th>
                         <th>&nbsp;</th>
@@ -31,27 +31,25 @@
                     @if (count($time_projects) > 0)
                         @foreach ($time_projects as $time_project)
                             <tr data-entry-id="{{ $time_project->id }}">
-                                @can('time_project_delete')
+
                                     <td></td>
-                                @endcan
+
 
                                 <td>{{ $time_project->name }}</td>
                                 <td>
-                                    @can('time_project_view')
-                                    <a href="{{ route('admin.time_projects.show',[$time_project->id]) }}" class="btn btn-xs btn-primary">@lang('quickadmin.qa_view')</a>
-                                    @endcan
-                                    @can('time_project_edit')
-                                    <a href="{{ route('admin.time_projects.edit',[$time_project->id]) }}" class="btn btn-xs btn-info">@lang('quickadmin.qa_edit')</a>
-                                    @endcan
-                                    @can('time_project_delete')
+
+                                    <a href="{{ route('time_projects.show',[$time_project->id]) }}" class="btn btn-xs btn-primary">@lang('quickadmin.qa_view')</a>
+
+                                    <a href="{{ route('time_projects.edit',[$time_project->id]) }}" class="btn btn-xs btn-info">@lang('quickadmin.qa_edit')</a>
+
                                     {!! Form::open(array(
                                         'style' => 'display: inline-block;',
                                         'method' => 'DELETE',
                                         'onsubmit' => "return confirm('".trans("quickadmin.qa_are_you_sure")."');",
-                                        'route' => ['admin.time_projects.destroy', $time_project->id])) !!}
+                                        'route' => ['time_projects.destroy', $time_project->id])) !!}
                                     {!! Form::submit(trans('quickadmin.qa_delete'), array('class' => 'btn btn-xs btn-danger')) !!}
                                     {!! Form::close() !!}
-                                    @endcan
+
                                 </td>
                             </tr>
                         @endforeach
@@ -68,9 +66,9 @@
 
 @section('javascript') 
     <script>
-        @can('time_project_delete')
-            window.route_mass_crud_entries_destroy = '{{ route('admin.time_projects.mass_destroy') }}';
-        @endcan
+
+            window.route_mass_crud_entries_destroy = '{{ route('time_projects.mass_destroy') }}';
+
 
     </script>
 @endsection
