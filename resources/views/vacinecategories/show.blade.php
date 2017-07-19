@@ -1,4 +1,4 @@
-@extends('layouts.app')
+@extends('layouts.master')
 
 @section('content')
     <h3 class="page-title">@lang('quickadmin.vacinecategory.title')</h3>
@@ -50,21 +50,19 @@
                                 <td>{{ $vacine->last_vacine_date }}</td>
                                 <td>{{ $vacine->next_vacine_date }}</td>
                                 <td>
-                                    @can('vacine_view')
-                                    <a href="{{ route('admin.vacines.show',[$vacine->id]) }}" class="btn btn-xs btn-primary">@lang('quickadmin.qa_view')</a>
-                                    @endcan
-                                    @can('vacine_edit')
-                                    <a href="{{ route('admin.vacines.edit',[$vacine->id]) }}" class="btn btn-xs btn-info">@lang('quickadmin.qa_edit')</a>
-                                    @endcan
-                                    @can('vacine_delete')
+
+                                    <a href="{{ route('vacines.show',[$vacine->id]) }}" class="btn btn-xs btn-primary">@lang('quickadmin.qa_view')</a>
+
+                                    <a href="{{ route('vacines.edit',[$vacine->id]) }}" class="btn btn-xs btn-info">@lang('quickadmin.qa_edit')</a>
+
                                     {!! Form::open(array(
                                         'style' => 'display: inline-block;',
                                         'method' => 'DELETE',
                                         'onsubmit' => "return confirm('".trans("quickadmin.qa_are_you_sure")."');",
-                                        'route' => ['admin.vacines.destroy', $vacine->id])) !!}
+                                        'route' => ['vacines.destroy', $vacine->id])) !!}
                                     {!! Form::submit(trans('quickadmin.qa_delete'), array('class' => 'btn btn-xs btn-danger')) !!}
                                     {!! Form::close() !!}
-                                    @endcan
+
                                 </td>
                 </tr>
             @endforeach
@@ -80,7 +78,7 @@
 
             <p>&nbsp;</p>
 
-            <a href="{{ route('admin.vacinecategories.index') }}" class="btn btn-default">@lang('quickadmin.qa_back_to_list')</a>
+            <a href="{{ route('vacinecategories.index') }}" class="btn btn-default">@lang('quickadmin.qa_back_to_list')</a>
         </div>
     </div>
 @stop

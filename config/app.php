@@ -12,7 +12,7 @@ return [
     | any other location as required by the application or its packages.
     */
 
-    'name' => env('APP_NAME', 'Laravel'),
+    'name' => env('APP_NAME', 'GF Farms'),
 
     /*
     |--------------------------------------------------------------------------
@@ -65,6 +65,19 @@ return [
     */
 
     'timezone' => 'Africa/Lagos',
+
+    /*
+     |--------------------------------------------------------------------------
+     | Application Date Format
+     |--------------------------------------------------------------------------
+     |
+     | Here you may specify the default date format for your application, which
+     | will be used with date and date-time functions.
+     |
+     */
+
+    'date_format' => 'd/m/Y',
+    'date_format_js' => 'dd/mm/yy',
 
     /*
     |--------------------------------------------------------------------------
@@ -198,7 +211,6 @@ return [
     */
 
     'aliases' => [
-
         'App' => Illuminate\Support\Facades\App::class,
         'Artisan' => Illuminate\Support\Facades\Artisan::class,
         'Auth' => Illuminate\Support\Facades\Auth::class,
@@ -232,6 +244,12 @@ return [
         'URL' => Illuminate\Support\Facades\URL::class,
         'Validator' => Illuminate\Support\Facades\Validator::class,
         'View' => Illuminate\Support\Facades\View::class,
+
+
+        /*
+         * Package Aliases
+         * 'Image'        => Intervention\Image\Facades\Image::class,
+         */
 
         'Gravatar' => Creativeorange\Gravatar\Facades\Gravatar::class,
         'Form' => Collective\Html\FormFacade::class,

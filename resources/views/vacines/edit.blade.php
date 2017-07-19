@@ -1,9 +1,9 @@
-@extends('layouts.app')
+@extends('layouts.master')
 
 @section('content')
     <h3 class="page-title">@lang('quickadmin.vacine.title')</h3>
     
-    {!! Form::model($vacine, ['method' => 'PUT', 'route' => ['admin.vacines.update', $vacine->id]]) !!}
+    {!! Form::model($vacine, ['method' => 'PUT', 'route' => ['vacines.update', $vacine->id]]) !!}
 
     <div class="panel panel-default">
         <div class="panel-heading">

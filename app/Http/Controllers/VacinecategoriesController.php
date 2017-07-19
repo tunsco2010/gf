@@ -17,8 +17,8 @@ class VacinecategoriesController extends Controller
      */
     public function index()
     {
-        echo"I am here in side it....<br/>";
-        return Vacinecategory::all();
+        $vacinecategories = Vacinecategory::all();
+        return view('vacinecategories.index', compact('vacinecategories'));
     }
 
     /**
@@ -28,7 +28,7 @@ class VacinecategoriesController extends Controller
      */
     public function create()
     {
-        echo"I am here in side create....<br/>";
+        return view('vacinecategories.create');
     }
 
     /**
@@ -39,9 +39,13 @@ class VacinecategoriesController extends Controller
      */
     public function store(StoreVacinecategoriesRequest $request)
     {
-        echo"I am here in side it Store....<br/>";
         $vacinecategory = Vacinecategory::create($request->all());
-        return $vacinecategory;
+
+        foreach ($request->input('vacines', []) as $data) {
+            $vacinecategory->vacine()->create($data);
+        }
+
+        return redirect()->route('vacinecategories.index');
     }
 
     /**
@@ -50,10 +54,14 @@ class VacinecategoriesController extends Controller
      * @param  \App\Vacinecategory  $vacinecategory
      * @return \Illuminate\Http\Response
      */
-    public function show(Vacinecategory $id)
+    public function show($id)
     {
-        return Vacinecategory::findOrFail($id);
-        echo"I am here in side Show<br/>";
+        //return Vacinecategory::findOrFail($id);
+        $vacines = \App\Vacine::where('category_id', $id)->get();
+        $vacinecategory = Vacinecategory::findOrFail($id);
+        return view('vacinecategories.show', compact('vacinecategory', 'vacines'));
+
+
     }
 
     /**
@@ -62,10 +70,11 @@ class VacinecategoriesController extends Controller
      * @param  \App\Vacinecategory  $vacinecategory
      * @return \Illuminate\Http\Response
      */
-    public function edit(Vacinecategory $vacinecategory)
+    public function edit( $id)
     {
-        //
-        echo"I am here in side edit....<br/>";
+        $vacinecategory = Vacinecategory::findOrFail($id);
+        $vacinecategory->delete();
+        return redirect()->route('vacinecategories.index');
     }
 
     /**
@@ -79,7 +88,27 @@ class VacinecategoriesController extends Controller
     {
         $vacinecategory = Vacinecategory::findOrFail($id);
         $vacinecategory->update($request->all());
-        return $vacinecategory;
+
+        $vacines = $vacinecategory->vacine;
+        $currentVacineData = [];
+        foreach ($request->input('vacines', []) as $index => $data) {
+            if (is_integer($index)) {
+                $vacinecategory->vacine()->create($data);
+            } else {
+                $id                          = explode('-', $index)[1];
+                $currentVacineData[$id] = $data;
+            }
+        }
+        foreach ($vacines as $item) {
+            if (isset($currentVacineData[$item->id])) {
+                $item->update($currentVacineData[$item->id]);
+            } else {
+                $item->delete();
+            }
+        }
+
+
+        return redirect()->route('vacinecategories.index');
     }
 
     /**
@@ -92,6 +121,24 @@ class VacinecategoriesController extends Controller
     {
         $vacinecategory = Vacinecategory::findOrFail($id);
         $vacinecategory->delete();
-        return '';
+        return redirect()->route('vacinecategories.index');
     }
+
+    /**
+     * Delete all selected Vacinecategory at once.
+     *
+     * @param Request $request
+     */
+    public function massDestroy(Request $request)
+    {
+
+        if ($request->input('ids')) {
+            $entries = Vacinecategory::whereIn('id', $request->input('ids'))->get();
+
+            foreach ($entries as $entry) {
+                $entry->delete();
+            }
+        }
+    }
+
 }

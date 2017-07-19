@@ -72,6 +72,19 @@ Route::post('health/consumptions_mass_destroy', ['uses' => 'ConsumptionControlle
 Route::resource('health/vacinecategories', 'VacinecategoriesController');
 Route::post('health/vacinecategories_mass_destroy', ['uses' => 'VacinecategoriesController@massDestroy', 'as' => 'vacinecategories.mass_destroy']);
 
+Route::resource('health/vacines', 'VacineController');
+Route::post('health/vacines_mass_destroy', ['uses' => 'VacineController@massDestroy', 'as' => 'vacines.mass_destroy']);
+
+Route::resource('time_work_types', 'TimeWorkTypesController');
+Route::post('time_work_types_mass_destroy', ['uses' => 'TimeWorkTypesController@massDestroy', 'as' => 'time_work_types.mass_destroy']);
+
+Route::resource('time_projects', 'TimeProjectsController');
+Route::post('time_projects_mass_destroy', ['uses' => 'TimeProjectsController@massDestroy', 'as' => 'time_projects.mass_destroy']);
+
+Route::resource('time_entries', 'TimeEntriesController');
+Route::post('time_entries_mass_destroy', ['uses' => 'TimeEntriesController@massDestroy', 'as' => 'time_entries.mass_destroy']);
+
+Route::resource('time_reports', 'TimeReportsController');
 
 //test route
 Route::get('test', 'TestController@index');

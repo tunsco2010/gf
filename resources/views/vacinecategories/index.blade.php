@@ -19,10 +19,7 @@
             <table class="table table-bordered table-striped {{ count($vacinecategories) > 0 ? 'datatable' : '' }} @can('vacinecategory_delete') dt-select @endcan">
                 <thead>
                     <tr>
-
-                            <th style="text-align:center;"><input type="checkbox" id="select-all" /></th>
-
-
+                        <th style="text-align:center;"><input type="checkbox" id="select-all" /></th>
                         <th>@lang('quickadmin.vacinecategory.fields.name')</th>
                         <th>&nbsp;</th>
                     </tr>
