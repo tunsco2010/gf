@@ -27,6 +27,28 @@
                             <span class="title">Expense Mgt</span>
                             <span class="fa arrow caret"></span>
                         </a>
+                        <ul class="dropdown-menu">
+                            <li><a href="/expenses">Expenses</a></li>
+                            <li><a href="/expense_categories">Exp.Category</a></li>
+                            <li><a href="/incomes">Income</a></li>
+                            <li><a href="/income_categories">Income Category</a></li>
+                            <li><a href="/monthly_reports">Report</a></li>
+                        </ul>
+                    </li>
+                    <li class="dropdown">
+                        <a href="#" class="dropdown-toggle"
+                           data-toggle="dropdown" role="button" aria-haspopup="true"
+                           aria-expanded="false">
+                            <i class="fa fa-money"></i>
+                            <span class="title">Time Mgt</span>
+                            <span class="fa arrow caret"></span>
+                        </a>
+                        <ul class="dropdown-menu">
+                            <li><a href="/time_work_types">Work Types</a></li>
+                            <li><a href="/time_projects">Projects</a></li>
+                            <li><a href="/time_entries">Time Entries</a></li>
+                            <li><a href="/time_reports">Report</a></li>
+                        </ul>
                     </li>
                     <li class="dropdown">
                         <a href="#" class="dropdown-toggle"
@@ -60,6 +82,18 @@
                                 <a href="{{ url('health/consumptions') }}">
                                     <i class="fa fa-glass"></i>
                                     <span class="title">Feed Request</span>
+                                </a>
+                            </li>
+                            <li class="">
+                                <a href="{{ url('health/vacines') }}">
+                                    <i class="fa fa-glass"></i>
+                                    <span class="title">Vaccine</span>
+                                </a>
+                            </li>
+                            <li class="">
+                                <a href="{{ url('health/vacinecategories') }}">
+                                    <i class="fa fa-glass"></i>
+                                    <span class="title">Types of Vaccine</span>
                                 </a>
                             </li>
                         </ul>
