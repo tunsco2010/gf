@@ -73,7 +73,7 @@ class TimeWorkTypesController extends Controller
         $time_work_type = TimeWorkType::findOrFail($id);
         $time_work_type->update($request->all());
 
-        return redirect()->route('admin.time_work_types.index');
+        return redirect()->route('time_work_types.index');
     }
 
 

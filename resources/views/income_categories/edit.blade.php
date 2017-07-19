@@ -3,7 +3,7 @@
 @section('content')
     <h3 class="page-title">@lang('quickadmin.income-category.title')</h3>
     
-    {!! Form::model($income_category, ['method' => 'PUT', 'route' => ['admin.income_categories.update', $income_category->id]]) !!}
+    {!! Form::model($income_category, ['method' => 'PUT', 'route' => ['income_categories.update', $income_category->id]]) !!}
 
     <div class="panel panel-default">
         <div class="panel-heading">

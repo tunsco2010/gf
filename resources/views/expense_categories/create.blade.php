@@ -1,8 +1,8 @@
-@extends('layouts.app')
+@extends('layouts.master')
 
 @section('content')
     <h3 class="page-title">@lang('quickadmin.expense-category.title')</h3>
-    {!! Form::open(['method' => 'POST', 'route' => ['admin.expense_categories.store']]) !!}
+    {!! Form::open(['method' => 'POST', 'route' => ['expense_categories.store']]) !!}
 
     <div class="panel panel-default">
         <div class="panel-heading">

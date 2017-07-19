@@ -1,9 +1,9 @@
-@extends('layouts.app')
+@extends('layouts.master')
 
 @section('content')
     <h3 class="page-title">@lang('quickadmin.expense-category.title')</h3>
     
-    {!! Form::model($expense_category, ['method' => 'PUT', 'route' => ['admin.expense_categories.update', $expense_category->id]]) !!}
+    {!! Form::model($expense_category, ['method' => 'PUT', 'route' => ['expense_categories.update', $expense_category->id]]) !!}
 
     <div class="panel panel-default">
         <div class="panel-heading">

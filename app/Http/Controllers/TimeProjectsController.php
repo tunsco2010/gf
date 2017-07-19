@@ -18,13 +18,11 @@ class TimeProjectsController extends Controller
      */
     public function index()
     {
-        if (! Gate::allows('time_project_access')) {
-            return abort(401);
-        }
+
 
         $time_projects = TimeProject::all();
 
-        return view('admin.time_projects.index', compact('time_projects'));
+        return view('time_projects.index', compact('time_projects'));
     }
 
     /**
@@ -34,28 +32,22 @@ class TimeProjectsController extends Controller
      */
     public function create()
     {
-        if (! Gate::allows('time_project_create')) {
-            return abort(401);
-        }
-        return view('admin.time_projects.create');
+
+        return view('time_projects.create');
     }
 
     /**
      * Store a newly created TimeProject in storage.
      *
-     * @param  \App\Http\Requests\StoreTimeProjectsRequest  $request
      * @return \Illuminate\Http\Response
      */
     public function store(StoreTimeProjectsRequest $request)
     {
-        if (! Gate::allows('time_project_create')) {
-            return abort(401);
-        }
         $time_project = TimeProject::create($request->all());
 
 
 
-        return redirect()->route('admin.time_projects.index');
+        return redirect()->route('time_projects.index');
     }
 
 
@@ -67,32 +59,26 @@ class TimeProjectsController extends Controller
      */
     public function edit($id)
     {
-        if (! Gate::allows('time_project_edit')) {
-            return abort(401);
-        }
         $time_project = TimeProject::findOrFail($id);
 
-        return view('admin.time_projects.edit', compact('time_project'));
+        return view('time_projects.edit', compact('time_project'));
     }
 
     /**
      * Update TimeProject in storage.
      *
-     * @param  \App\Http\Requests\UpdateTimeProjectsRequest  $request
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
     public function update(UpdateTimeProjectsRequest $request, $id)
     {
-        if (! Gate::allows('time_project_edit')) {
-            return abort(401);
-        }
+
         $time_project = TimeProject::findOrFail($id);
         $time_project->update($request->all());
 
 
 
-        return redirect()->route('admin.time_projects.index');
+        return redirect()->route('time_projects.index');
     }
 
 
@@ -104,14 +90,12 @@ class TimeProjectsController extends Controller
      */
     public function show($id)
     {
-        if (! Gate::allows('time_project_view')) {
-            return abort(401);
-        }
+
         $time_entries = \App\TimeEntry::where('project_id', $id)->get();
 
         $time_project = TimeProject::findOrFail($id);
 
-        return view('admin.time_projects.show', compact('time_project', 'time_entries'));
+        return view('time_projects.show', compact('time_project', 'time_entries'));
     }
 
 
@@ -123,13 +107,11 @@ class TimeProjectsController extends Controller
      */
     public function destroy($id)
     {
-        if (! Gate::allows('time_project_delete')) {
-            return abort(401);
-        }
+
         $time_project = TimeProject::findOrFail($id);
         $time_project->delete();
 
-        return redirect()->route('admin.time_projects.index');
+        return redirect()->route('time_projects.index');
     }
 
     /**
@@ -139,9 +121,7 @@ class TimeProjectsController extends Controller
      */
     public function massDestroy(Request $request)
     {
-        if (! Gate::allows('time_project_delete')) {
-            return abort(401);
-        }
+
         if ($request->input('ids')) {
             $entries = TimeProject::whereIn('id', $request->input('ids'))->get();
 

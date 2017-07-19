@@ -86,6 +86,27 @@ Route::post('time_entries_mass_destroy', ['uses' => 'TimeEntriesController@massD
 
 Route::resource('time_reports', 'TimeReportsController');
 
+
+Route::resource('expense_categories', 'ExpenseCategoriesController');
+Route::post('expense_categories_mass_destroy', ['uses' => 'ExpenseCategoriesController@massDestroy', 'as' => 'expense_categories.mass_destroy']);
+
+Route::resource('income_categories', 'IncomeCategoriesController');
+Route::post('income_categories_mass_destroy', ['uses' => 'IncomeCategoriesController@massDestroy', 'as' => 'income_categories.mass_destroy']);
+
+Route::resource('incomes', 'IncomesController');
+Route::post('incomes_mass_destroy', ['uses' => 'IncomesController@massDestroy', 'as' => 'incomes.mass_destroy']);
+
+Route::resource('expenses', 'ExpensesController');
+Route::post('expenses_mass_destroy', ['uses' => 'ExpensesController@massDestroy', 'as' => 'expenses.mass_destroy']);
+
+Route::resource('monthly_reports', 'MonthlyReportsController');
+
+Route::resource('faq_categories', 'FaqCategoriesController');
+Route::post('faq_categories_mass_destroy', ['uses' => 'FaqCategoriesController@massDestroy', 'as' => 'faq_categories.mass_destroy']);
+
+Route::resource('faq_questions', 'FaqQuestionsController');
+Route::post('faq_questions_mass_destroy', ['uses' => 'FaqQuestionsController@massDestroy', 'as' => 'faq_questions.mass_destroy']);
+
 //test route
 Route::get('test', 'TestController@index');
 Route::get('test/user', 'TestController@getUser');

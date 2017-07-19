@@ -1,13 +1,13 @@
-@extends('layouts.app')
+@extends('layouts.master')
 
 @section('content')
     <h3 class="page-title">@lang('quickadmin.expense-category.title')</h3>
-    @can('expense_category_create')
+
     <p>
-        <a href="{{ route('admin.expense_categories.create') }}" class="btn btn-success">@lang('quickadmin.qa_add_new')</a>
+        <a href="{{ route('expense_categories.create') }}" class="btn btn-success">@lang('quickadmin.qa_add_new')</a>
         
     </p>
-    @endcan
+
 
     <div class="panel panel-default">
         <div class="panel-heading">
@@ -15,12 +15,12 @@
         </div>
 
         <div class="panel-body table-responsive">
-            <table class="table table-bordered table-striped {{ count($expense_categories) > 0 ? 'datatable' : '' }} @can('expense_category_delete') dt-select @endcan">
+            <table class="table table-bordered table-striped {{ count($expense_categories) > 0 ? 'datatable' : '' }} dt-select ">
                 <thead>
                     <tr>
-                        @can('expense_category_delete')
+
                             <th style="text-align:center;"><input type="checkbox" id="select-all" /></th>
-                        @endcan
+
 
                         <th>@lang('quickadmin.expense-category.fields.name')</th>
                         <th>&nbsp;</th>
@@ -31,33 +31,32 @@
                     @if (count($expense_categories) > 0)
                         @foreach ($expense_categories as $expense_category)
                             <tr data-entry-id="{{ $expense_category->id }}">
-                                @can('expense_category_delete')
+
                                     <td></td>
-                                @endcan
+
 
                                 <td>{{ $expense_category->name }}</td>
                                 <td>
-                                    @can('expense_category_view')
-                                    <a href="{{ route('admin.expense_categories.show',[$expense_category->id]) }}" class="btn btn-xs btn-primary">@lang('quickadmin.qa_view')</a>
-                                    @endcan
-                                    @can('expense_category_edit')
-                                    <a href="{{ route('admin.expense_categories.edit',[$expense_category->id]) }}" class="btn btn-xs btn-info">@lang('quickadmin.qa_edit')</a>
-                                    @endcan
-                                    @can('expense_category_delete')
+
+                                    <a href="{{ route('expense_categories.show',[$expense_category->id]) }}" class="btn btn-xs btn-primary">@lang('quickadmin.qa_view')</a>
+
+
+                                    <a href="{{ route('expense_categories.edit',[$expense_category->id]) }}" class="btn btn-xs btn-info">@lang('quickadmin.qa_edit')</a>
+
                                     {!! Form::open(array(
                                         'style' => 'display: inline-block;',
                                         'method' => 'DELETE',
-                                        'onsubmit' => "return confirm('".trans("quickadmin.qa_are_you_sure")."');",
-                                        'route' => ['admin.expense_categories.destroy', $expense_category->id])) !!}
+                                        'onsubmit' => "return confirm('".trans("quickqa_are_you_sure")."');",
+                                        'route' => ['expense_categories.destroy', $expense_category->id])) !!}
                                     {!! Form::submit(trans('quickadmin.qa_delete'), array('class' => 'btn btn-xs btn-danger')) !!}
                                     {!! Form::close() !!}
-                                    @endcan
+
                                 </td>
                             </tr>
                         @endforeach
                     @else
                         <tr>
-                            <td colspan="5">@lang('quickadmin.qa_no_entries_in_table')</td>
+                            <td colspan="5">@lang('quickqa_no_entries_in_table')</td>
                         </tr>
                     @endif
                 </tbody>
@@ -68,9 +67,9 @@
 
 @section('javascript') 
     <script>
-        @can('expense_category_delete')
-            window.route_mass_crud_entries_destroy = '{{ route('admin.expense_categories.mass_destroy') }}';
-        @endcan
+
+            window.route_mass_crud_entries_destroy = '{{ route('expense_categories.mass_destroy') }}';
+
 
     </script>
 @endsection

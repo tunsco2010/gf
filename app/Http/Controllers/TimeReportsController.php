@@ -50,7 +50,7 @@ class TimeReportsController extends Controller
             }
         }
 
-        return view('admin.time_reports.index', compact(
+        return view('time_reports.index', compact(
             'projects_time',
             'work_type_time'
         ));

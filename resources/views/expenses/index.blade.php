@@ -1,13 +1,13 @@
-@extends('layouts.app')
+@extends('layouts.master')
 
 @section('content')
     <h3 class="page-title">@lang('quickadmin.expense.title')</h3>
-    @can('expense_create')
+
     <p>
-        <a href="{{ route('admin.expenses.create') }}" class="btn btn-success">@lang('quickadmin.qa_add_new')</a>
+        <a href="{{ route('expenses.create') }}" class="btn btn-success">@lang('quickadmin.qa_add_new')</a>
         
     </p>
-    @endcan
+
 
     <div class="panel panel-default">
         <div class="panel-heading">
@@ -18,9 +18,9 @@
             <table class="table table-bordered table-striped {{ count($expenses) > 0 ? 'datatable' : '' }} @can('expense_delete') dt-select @endcan">
                 <thead>
                     <tr>
-                        @can('expense_delete')
+
                             <th style="text-align:center;"><input type="checkbox" id="select-all" /></th>
-                        @endcan
+
 
                         <th>@lang('quickadmin.expense.fields.expense-category')</th>
                         <th>@lang('quickadmin.expense.fields.entry-date')</th>
@@ -33,29 +33,27 @@
                     @if (count($expenses) > 0)
                         @foreach ($expenses as $expense)
                             <tr data-entry-id="{{ $expense->id }}">
-                                @can('expense_delete')
+
                                     <td></td>
-                                @endcan
+
 
                                 <td>{{ $expense->expense_category->name or '' }}</td>
                                 <td>{{ $expense->entry_date }}</td>
                                 <td>{{ $expense->amount }}</td>
                                 <td>
-                                    @can('expense_view')
-                                    <a href="{{ route('admin.expenses.show',[$expense->id]) }}" class="btn btn-xs btn-primary">@lang('quickadmin.qa_view')</a>
-                                    @endcan
-                                    @can('expense_edit')
-                                    <a href="{{ route('admin.expenses.edit',[$expense->id]) }}" class="btn btn-xs btn-info">@lang('quickadmin.qa_edit')</a>
-                                    @endcan
-                                    @can('expense_delete')
+
+                                    <a href="{{ route('expenses.show',[$expense->id]) }}" class="btn btn-xs btn-primary">@lang('quickadmin.qa_view')</a>
+
+                                    <a href="{{ route('expenses.edit',[$expense->id]) }}" class="btn btn-xs btn-info">@lang('quickadmin.qa_edit')</a>
+
                                     {!! Form::open(array(
                                         'style' => 'display: inline-block;',
                                         'method' => 'DELETE',
                                         'onsubmit' => "return confirm('".trans("quickadmin.qa_are_you_sure")."');",
-                                        'route' => ['admin.expenses.destroy', $expense->id])) !!}
+                                        'route' => ['expenses.destroy', $expense->id])) !!}
                                     {!! Form::submit(trans('quickadmin.qa_delete'), array('class' => 'btn btn-xs btn-danger')) !!}
                                     {!! Form::close() !!}
-                                    @endcan
+
                                 </td>
                             </tr>
                         @endforeach
