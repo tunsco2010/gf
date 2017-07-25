@@ -11,6 +11,10 @@ use App\Http\Requests\Admin\UpdateIncomesRequest;
 
 class IncomesController extends Controller
 {
+    public function __construct()
+    {
+        $this->middleware('auth');
+    }
     /**
      * Display a listing of Income.
      *
@@ -19,6 +23,7 @@ class IncomesController extends Controller
     public function index()
     {
 
+        $incomes = Income::all();
 
         return view('incomes.index', compact('incomes'));
     }

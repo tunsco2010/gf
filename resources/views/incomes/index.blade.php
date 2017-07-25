@@ -18,7 +18,6 @@
             <table class="table table-bordered table-striped {{ count($incomes) > 0 ? 'datatable' : '' }} dt-select ">
                 <thead>
                     <tr>
-
                             <th style="text-align:center;"><input type="checkbox" id="select-all" /></th>
 
 

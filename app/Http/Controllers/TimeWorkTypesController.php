@@ -11,6 +11,10 @@ use App\Http\Requests\Admin\UpdateTimeWorkTypesRequest;
 
 class TimeWorkTypesController extends Controller
 {
+    public function __construct()
+    {
+        $this->middleware('auth');
+    }
     /**
      * Display a listing of TimeWorkType.
      *

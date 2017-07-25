@@ -10,6 +10,10 @@ use App\Http\Requests\Admin\UpdateVacinecategoriesRequest;
 
 class VacinecategoriesController extends Controller
 {
+    public function __construct()
+    {
+        $this->middleware('auth');
+    }
     /**
      * Display a listing of the vaccine resource.
      *

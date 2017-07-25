@@ -9,6 +9,10 @@ use App\Http\Controllers\Controller;
 
 class MonthlyReportsController extends Controller
 {
+    public function __construct()
+    {
+        $this->middleware('auth');
+    }
     public function index(Request $r)
     {
         $from    = Carbon::parse(sprintf(

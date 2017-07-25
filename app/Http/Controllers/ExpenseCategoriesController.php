@@ -11,6 +11,10 @@ use App\Http\Requests\Admin\UpdateExpenseCategoriesRequest;
 
 class ExpenseCategoriesController extends Controller
 {
+    public function __construct()
+    {
+        $this->middleware('auth');
+    }
     /**
      * Display a listing of ExpenseCategory.
      *
