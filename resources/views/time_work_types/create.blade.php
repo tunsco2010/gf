@@ -1,8 +1,8 @@
-@extends('layouts.app')
+@extends('layouts.master')
 
 @section('content')
     <h3 class="page-title">@lang('quickadmin.time-work-types.title')</h3>
-    {!! Form::open(['method' => 'POST', 'route' => ['admin.time_work_types.store']]) !!}
+    {!! Form::open(['method' => 'POST', 'route' => ['time_work_types.store']]) !!}
 
     <div class="panel panel-default">
         <div class="panel-heading">

@@ -26,6 +26,7 @@ class MonthlyReportsController extends Controller
         $exp_q = Expense::with('expense_category')
             ->whereBetween('entry_date', [$from, $to]);
 
+
         $inc_q = Income::with('income_category')
             ->whereBetween('entry_date', [$from, $to]);
 

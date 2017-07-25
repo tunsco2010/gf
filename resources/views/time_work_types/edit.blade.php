@@ -1,9 +1,9 @@
-@extends('layouts.app')
+@extends('layouts.master')
 
 @section('content')
     <h3 class="page-title">@lang('quickadmin.time-work-types.title')</h3>
     
-    {!! Form::model($time_work_type, ['method' => 'PUT', 'route' => ['admin.time_work_types.update', $time_work_type->id]]) !!}
+    {!! Form::model($time_work_type, ['method' => 'PUT', 'route' => ['time_work_types.update', $time_work_type->id]]) !!}
 
     <div class="panel panel-default">
         <div class="panel-heading">

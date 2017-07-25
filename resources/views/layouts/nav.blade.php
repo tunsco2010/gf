@@ -23,7 +23,6 @@
                         <a href="#" class="dropdown-toggle"
                            data-toggle="dropdown" role="button" aria-haspopup="true"
                            aria-expanded="false">
-                            <i class="fa fa-money"></i>
                             <span class="title">Expense Mgt</span>
                             <span class="fa arrow caret"></span>
                         </a>
@@ -39,7 +38,6 @@
                         <a href="#" class="dropdown-toggle"
                            data-toggle="dropdown" role="button" aria-haspopup="true"
                            aria-expanded="false">
-                            <i class="fa fa-money"></i>
                             <span class="title">Time Mgt</span>
                             <span class="fa arrow caret"></span>
                         </a>
@@ -67,7 +65,6 @@
                         <a href="#" class="dropdown-toggle"
                            data-toggle="dropdown" role="button" aria-haspopup="true"
                            aria-expanded="false">
-                            <i class="fa fa-hospital-o"></i>
                             <span class="title">Health</span>
                             <span class="fa arrow caret"></span>
                         </a>
