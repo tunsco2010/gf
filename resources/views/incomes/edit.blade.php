@@ -71,5 +71,4 @@
             dateFormat: "{{ config('app.date_format_js') }}"
         });
     </script>
-
 @stop
