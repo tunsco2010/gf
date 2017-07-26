@@ -5,11 +5,11 @@
 
 <!--sweet alert -->
 <link rel="stylesheet" href="/css/sweetalert.css">
-<link rel="stylesheet" href="/css/components.css">
-<link rel="stylesheet" href="/css/select2.min.css">
+{{--<link rel="stylesheet" href="/css/components.css">--}}
+{{--<link rel="stylesheet" href="/css/select2.min.css">--}}
 
-<link rel="stylesheet"
-      href="https://code.jquery.com/ui/1.11.3/themes/smoothness/jquery-ui.css">
+{{--<link rel="stylesheet"--}}
+      {{--href="https://code.jquery.com/ui/1.11.3/themes/smoothness/jquery-ui.css">--}}
 <link rel="stylesheet"
       href="//cdn.datatables.net/1.10.9/css/jquery.dataTables.min.css"/>
 <link rel="stylesheet"
