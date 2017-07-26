@@ -71,13 +71,11 @@
                         <ul class="dropdown-menu">
                             <li class="">
                                 <a href="{{ url('health/feeds') }}">
-                                    <i class="fa fa-glass"></i>
                                     <span class="title">Feed</span>
                                 </a>
                             </li>
                             <li class="">
                                 <a href="{{ url('health/consumptions') }}">
-                                    <i class="fa fa-glass"></i>
                                     <span class="title">Feed Request</span>
                                 </a>
                             </li>
@@ -89,7 +87,6 @@
                             </li>
                             <li class="">
                                 <a href="{{ url('health/vacinecategories') }}">
-                                    <i class="fa fa-glass"></i>
                                     <span class="title">Types of Vaccine</span>
                                 </a>
                             </li>
