@@ -70,9 +70,9 @@
 
 @section('javascript') 
     <script>
-        @can('expense_delete')
-            window.route_mass_crud_entries_destroy = '{{ route('admin.expenses.mass_destroy') }}';
-        @endcan
+
+            window.route_mass_crud_entries_destroy = '{{ route('expenses.mass_destroy') }}';
+
 
     </script>
 @endsection

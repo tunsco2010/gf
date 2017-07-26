@@ -1,9 +1,9 @@
-@extends('layouts.app')
+@extends('layouts.master')
 
 @section('content')
     <h3 class="page-title">@lang('quickadmin.faq-categories.title')</h3>
     
-    {!! Form::model($faq_category, ['method' => 'PUT', 'route' => ['admin.faq_categories.update', $faq_category->id]]) !!}
+    {!! Form::model($faq_category, ['method' => 'PUT', 'route' => ['faq_categories.update', $faq_category->id]]) !!}
 
     <div class="panel panel-default">
         <div class="panel-heading">

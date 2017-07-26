@@ -47,17 +47,17 @@
                                 <td>{{ $income->amount }}</td>
                                 <td>
                                     @can('income_view')
-                                    <a href="{{ route('admin.incomes.show',[$income->id]) }}" class="btn btn-xs btn-primary">@lang('quickadmin.qa_view')</a>
+                                    <a href="{{ route('incomes.show',[$income->id]) }}" class="btn btn-xs btn-primary">@lang('quickadmin.qa_view')</a>
                                     @endcan
                                     @can('income_edit')
-                                    <a href="{{ route('admin.incomes.edit',[$income->id]) }}" class="btn btn-xs btn-info">@lang('quickadmin.qa_edit')</a>
+                                    <a href="{{ route('incomes.edit',[$income->id]) }}" class="btn btn-xs btn-info">@lang('quickadmin.qa_edit')</a>
                                     @endcan
                                     @can('income_delete')
                                     {!! Form::open(array(
                                         'style' => 'display: inline-block;',
                                         'method' => 'DELETE',
                                         'onsubmit' => "return confirm('".trans("quickadmin.qa_are_you_sure")."');",
-                                        'route' => ['admin.incomes.destroy', $income->id])) !!}
+                                        'route' => ['incomes.destroy', $income->id])) !!}
                                     {!! Form::submit(trans('quickadmin.qa_delete'), array('class' => 'btn btn-xs btn-danger')) !!}
                                     {!! Form::close() !!}
                                     @endcan
@@ -76,7 +76,7 @@
 
             <p>&nbsp;</p>
 
-            <a href="{{ route('admin.income_categories.index') }}" class="btn btn-default">@lang('quickadmin.qa_back_to_list')</a>
+            <a href="{{ route('income_categories.index') }}" class="btn btn-default">@lang('quickadmin.qa_back_to_list')</a>
         </div>
     </div>
 @stop

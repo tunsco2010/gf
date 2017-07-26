@@ -1,4 +1,4 @@
-@extends('layouts.app')
+@extends('layouts.master')
 
 @section('content')
     <h3 class="page-title">@lang('quickadmin.faq-categories.title')</h3>
@@ -46,21 +46,19 @@
                                 <td>{!! $faq_question->question_text !!}</td>
                                 <td>{!! $faq_question->answer_text !!}</td>
                                 <td>
-                                    @can('faq_question_view')
-                                    <a href="{{ route('admin.faq_questions.show',[$faq_question->id]) }}" class="btn btn-xs btn-primary">@lang('quickadmin.qa_view')</a>
-                                    @endcan
-                                    @can('faq_question_edit')
-                                    <a href="{{ route('admin.faq_questions.edit',[$faq_question->id]) }}" class="btn btn-xs btn-info">@lang('quickadmin.qa_edit')</a>
-                                    @endcan
-                                    @can('faq_question_delete')
+
+                                    <a href="{{ route('faq_questions.show',[$faq_question->id]) }}" class="btn btn-xs btn-primary">@lang('quickadmin.qa_view')</a>
+
+                                    <a href="{{ route('faq_questions.edit',[$faq_question->id]) }}" class="btn btn-xs btn-info">@lang('quickadmin.qa_edit')</a>
+
                                     {!! Form::open(array(
                                         'style' => 'display: inline-block;',
                                         'method' => 'DELETE',
                                         'onsubmit' => "return confirm('".trans("quickadmin.qa_are_you_sure")."');",
-                                        'route' => ['admin.faq_questions.destroy', $faq_question->id])) !!}
+                                        'route' => ['faq_questions.destroy', $faq_question->id])) !!}
                                     {!! Form::submit(trans('quickadmin.qa_delete'), array('class' => 'btn btn-xs btn-danger')) !!}
                                     {!! Form::close() !!}
-                                    @endcan
+
                                 </td>
                 </tr>
             @endforeach
@@ -76,7 +74,7 @@
 
             <p>&nbsp;</p>
 
-            <a href="{{ route('admin.faq_categories.index') }}" class="btn btn-default">@lang('quickadmin.qa_back_to_list')</a>
+            <a href="{{ route('faq_categories.index') }}" class="btn btn-default">@lang('quickadmin.qa_back_to_list')</a>
         </div>
     </div>
 @stop

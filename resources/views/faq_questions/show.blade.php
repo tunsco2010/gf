@@ -1,4 +1,4 @@
-@extends('layouts.app')
+@extends('layouts.master')
 
 @section('content')
     <h3 class="page-title">@lang('quickadmin.faq-questions.title')</h3>
@@ -30,7 +30,7 @@
 
             <p>&nbsp;</p>
 
-            <a href="{{ route('admin.faq_questions.index') }}" class="btn btn-default">@lang('quickadmin.qa_back_to_list')</a>
+            <a href="{{ route('faq_questions.index') }}" class="btn btn-default">@lang('quickadmin.qa_back_to_list')</a>
         </div>
     </div>
 @stop
