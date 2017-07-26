@@ -12,7 +12,7 @@
     <hr/>
     
     {!! Form::model($income, ['method' => 'PUT', 'route' => ['incomes.update', $income->id]]) !!}
-
+    {{ csrf_field() }}
     <div class="panel panel-default">
         <div class="panel-heading">
             @lang('quickadmin.qa_edit')

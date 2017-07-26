@@ -4,7 +4,7 @@
     <h3 class="page-title">@lang('quickadmin.time-projects.title')</h3>
     
     {!! Form::model($time_project, ['method' => 'PUT', 'route' => ['time_projects.update', $time_project->id]]) !!}
-
+    {{ csrf_field() }}
     <div class="panel panel-default">
         <div class="panel-heading">
             @lang('quickadmin.qa_edit')

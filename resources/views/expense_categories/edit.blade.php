@@ -4,7 +4,7 @@
     <h3 class="page-title">@lang('quickadmin.expense-category.title')</h3>
     
     {!! Form::model($expense_category, ['method' => 'PUT', 'route' => ['expense_categories.update', $expense_category->id]]) !!}
-
+    {{ csrf_field() }}
     <div class="panel panel-default">
         <div class="panel-heading">
             @lang('quickadmin.qa_edit')

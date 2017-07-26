@@ -4,7 +4,7 @@
     <h3 class="page-title">@lang('quickadmin.faq-questions.title')</h3>
     
     {!! Form::model($faq_question, ['method' => 'PUT', 'route' => ['faq_questions.update', $faq_question->id]]) !!}
-
+    {{ csrf_field() }}
     <div class="panel panel-default">
         <div class="panel-heading">
             @lang('quickadmin.qa_edit')

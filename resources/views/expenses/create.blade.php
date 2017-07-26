@@ -3,7 +3,7 @@
 @section('content')
     <h3 class="page-title">@lang('quickadmin.expense.title')</h3>
     {!! Form::open(['method' => 'POST', 'route' => ['expenses.store']]) !!}
-
+    {{ csrf_field() }}
     <div class="panel panel-default">
         <div class="panel-heading">
             @lang('quickadmin.qa_create')

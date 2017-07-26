@@ -3,7 +3,7 @@
 @section('content')
     <h3 class="page-title">@lang('quickadmin.time-work-types.title')</h3>
     {!! Form::open(['method' => 'POST', 'route' => ['time_work_types.store']]) !!}
-
+    {{ csrf_field() }}
     <div class="panel panel-default">
         <div class="panel-heading">
             @lang('quickadmin.qa_create')

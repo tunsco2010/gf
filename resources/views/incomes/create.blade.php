@@ -19,7 +19,7 @@
 
 
     {!! Form::open(['method' => 'POST', 'route' => ['incomes.store']]) !!}
-
+    {{ csrf_field() }}
     <div class="panel panel-default">
         <div class="panel-heading">
             @lang('quickadmin.qa_create')

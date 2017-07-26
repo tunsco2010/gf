@@ -4,7 +4,7 @@
     <h3 class="page-title">@lang('quickadmin.feed.title')</h3>
     
     {!! Form::model($feed, ['method' => 'PUT', 'route' => ['admin.feeds.update', $feed->id]]) !!}
-
+    {{ csrf_field() }}
     <div class="panel panel-default">
         <div class="panel-heading">
             @lang('quickadmin.qa_edit')
