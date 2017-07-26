@@ -1,7 +1,15 @@
 @extends('layouts.master')
 
 @section('content')
-    <h3 class="page-title">@lang('quickadmin.income.title')</h3>
+
+    <ol class='breadcrumb'>
+        <li><a href='/'>Home</a></li>
+        <li class='active'><a href='/incomes'>Income</a></li>
+    </ol>
+
+    <h2 class="page-title">@lang('quickadmin.income.title')</h2>
+
+    <hr/>
     
     {!! Form::model($income, ['method' => 'PUT', 'route' => ['incomes.update', $income->id]]) !!}
 

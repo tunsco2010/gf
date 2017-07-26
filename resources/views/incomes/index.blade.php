@@ -1,7 +1,14 @@
 @extends('layouts.master')
 
 @section('content')
-    <h3 class="page-title">@lang('quickadmin.income.title')</h3>
+    <ol class='breadcrumb'>
+        <li><a href='/'>Home</a></li>
+        <li class='active'><a href='/incomes'>Income</a></li>
+    </ol>
+
+    <h2 class="page-title">@lang('quickadmin.income.title')</h2>
+
+    <hr/>
 
     <p>
         <a href="{{ route('incomes.create') }}" class="btn btn-success">@lang('quickadmin.qa_add_new')</a>

@@ -1,6 +1,22 @@
 @extends('layouts.master')
+@section('title')
+
+    <title>Income Categories</title>
+
+@endsection
 
 @section('content')
+
+    <ol class='breadcrumb'>
+        <li><a href='/'>Home</a></li>
+        <li><a href='/incomes'>Income</a></li>
+        <li class='active'>Income Categories</li>
+    </ol>
+
+    <h2>Income Categories</h2>
+
+    <hr/>
+
     <h3 class="page-title">@lang('quickadmin.income-category.title')</h3>
     {!! Form::open(['method' => 'POST', 'route' => ['income_categories.store']]) !!}
 

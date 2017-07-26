@@ -1,7 +1,23 @@
 @extends('layouts.master')
 
+@section('title')
+
+    <title>Income</title>
+
+@endsection
+
 @section('content')
-    <h3 class="page-title">@lang('quickadmin.income.title')</h3>
+
+    <ol class='breadcrumb'>
+        <li><a href='/'>Home</a></li>
+        <li class='active'>Income</li>
+    </ol>
+
+    <h2 class="page-title">@lang('quickadmin.income.title')</h2>
+
+    <hr/>
+
+
     {!! Form::open(['method' => 'POST', 'route' => ['incomes.store']]) !!}
 
     <div class="panel panel-default">

@@ -7,7 +7,7 @@
 @endsection
 
 @section('content')
-
+    <hr/> <hr/> <hr/> <hr/>
     <ol class='breadcrumb'>
         <li><a href='/'>Home</a></li>
         <li><a href='/product'>Products</a></li>
