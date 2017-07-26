@@ -49,7 +49,7 @@
                                         'route' => ['income_categories.destroy', $income_category->id])) !!}
                                     {!! Form::submit(trans('quickadmin.qa_delete'), array('class' => 'btn btn-xs btn-danger')) !!}
                                     {!! Form::close() !!}
-                                    @endcan
+
                                 </td>
                             </tr>
                         @endforeach
