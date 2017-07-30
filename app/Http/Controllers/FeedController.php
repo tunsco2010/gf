@@ -15,6 +15,7 @@ class FeedController extends Controller
     {
         $this->middleware('auth');
     }
+
     /**
      * Display a listing of the resource.
      *
@@ -41,17 +42,11 @@ class FeedController extends Controller
      * Store a newly created resource in storage.
      *
      */
-    public function store(Request $request)
+    public function store(StoreFeedsRequest $request)
     {
-        $this->validate($request, [
-            'name' => 'required',
-            'date'=> 'required'
 
-        ]);
-
-        $request->date = $request->date->date_format('Y-m-d');
         $feed = Feed::create($request->all());
-        $feed->save();
+
         alert()->success('Congrats!', 'You added a Feed');
         return Redirect::route('health.feeds.index');
 
@@ -65,7 +60,7 @@ class FeedController extends Controller
      */
     public function show(Feed $id)
     {
-        //$consumptions = Consumption::where('stock_id', $id)->get();
+        $consumptions = Consumption::where('stock_id', $id)->get();
 
         $feed = Feed::findOrFail($id);
 

@@ -5,7 +5,6 @@ namespace App\Http\Controllers;
 use App\Expense;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Gate;
-use App\Http\Controllers\Controller;
 use App\Http\Requests\Admin\StoreExpensesRequest;
 use App\Http\Requests\Admin\UpdateExpensesRequest;
 
@@ -15,6 +14,7 @@ class ExpensesController extends Controller
     {
         $this->middleware('auth');
     }
+
     /**
      * Display a listing of Expense.
      *
@@ -22,10 +22,7 @@ class ExpensesController extends Controller
      */
     public function index()
     {
-
-
         $expenses = Expense::all();
-
         return view('expenses.index', compact('expenses'));
     }
 
@@ -50,11 +47,19 @@ class ExpensesController extends Controller
      */
     public function store(StoreExpensesRequest $request)
     {
+//        $this->validate($request, [
+//            'expense_category_id' => 'required',
+//            'entry_date' => 'required|date_format:'.config('app.date_format'),
+//            'amount' => 'required',
+//
+//        ]);
+//        var_dump($request);
+//        $expense = Expense::create($request->all());
+//        $expense->save();
+        //return redirect()->route('admin.expenses.index');
 
         $expense = Expense::create($request->all());
-
-
-
+        alert()->success('Congrats!', 'You added new Expense');
         return redirect()->route('expenses.index');
     }
 
@@ -85,12 +90,19 @@ class ExpensesController extends Controller
     public function update(UpdateExpensesRequest $request, $id)
     {
 
+        $this->validate($id, [
+            'expense_category_id' => 'required',
+            'entry_date' => 'required|date_format:'.config('app.date_format'),
+            'amount' => 'required',
+        ]);
+
         $expense = Expense::findOrFail($id);
         $expense->update($request->all());
 
-
-
+        alert()->success('Congrats!', 'You updated the expenses');
+        //return Redirect::route('expenses.show', 'expenses');
         return redirect()->route('expenses.index');
+
     }
 
 

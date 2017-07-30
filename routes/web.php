@@ -107,6 +107,13 @@ Route::post('faq_categories_mass_destroy', ['uses' => 'FaqCategoriesController@m
 Route::resource('faq_questions', 'FaqQuestionsController');
 Route::post('faq_questions_mass_destroy', ['uses' => 'FaqQuestionsController@massDestroy', 'as' => 'faq_questions.mass_destroy']);
 
+Route::resource('roles', 'RolesController');
+Route::post('roles_mass_destroy', ['uses' => 'RolesController@massDestroy', 'as' => 'roles.mass_destroy']);
+
+Route::resource('users', 'UsersController');
+Route::post('users_mass_destroy', ['uses' => 'UsersController@massDestroy', 'as' => 'users.mass_destroy']);
+
+
 //test route
 Route::get('test', 'TestController@index');
 Route::get('test/user', 'TestController@getUser');

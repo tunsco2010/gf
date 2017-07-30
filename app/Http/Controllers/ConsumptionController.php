@@ -43,16 +43,16 @@ class ConsumptionController extends Controller
      * Store a newly created resource in storage.
      *
      */
-    public function store(Request $request)
+    public function store(StoreConsumptionsRequest $request)
     {
 
-        $consumpt = Consumption::create([
-            'user_id' => $request->user_id,
-            'quantity' => $request->quantity,
-            'date' => $request->date,
-            'description' => $request->description,
-            'stock_id' => $request->stock_id
-        ]);
+//        $consumpt = Consumption::create([
+//            'user_id' => $request->user_id,
+//            'quantity' => $request->quantity,
+//            'date' => $request->date,
+//            'description' => $request->description,
+//            'stock_id' => $request->stock_id
+//        ]);
 //        $category = new Consumption;
 ////
 //        $category->user_id = $request->get('name');
@@ -60,10 +60,10 @@ class ConsumptionController extends Controller
 //        $category->date = $request->get('date');
 //        $category->description= $request->get('description');
 //        $category->stock_id = $request->get('stock_id');
+//
+//        $consumpt->save();
 
-        $consumpt->save();
-
-//        $consumption = Consumption::create($request->all());
+        $consumption = Consumption::create($request->all());
 
         alert()->success('Congrats!', 'You Collected '.$request->quantity .' Bag(s) of Feed');
         return redirect()->route('consumptions.index');

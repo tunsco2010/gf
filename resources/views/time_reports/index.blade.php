@@ -1,4 +1,4 @@
-@extends('layouts.masterapp')
+@extends('layouts.master')
 
 @section('content')
     <h3 class="page-title">Reports</h3>

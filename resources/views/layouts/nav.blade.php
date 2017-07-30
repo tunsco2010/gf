@@ -81,7 +81,6 @@
                             </li>
                             <li class="">
                                 <a href="{{ url('health/vacines') }}">
-                                    <i class="fa fa-glass"></i>
                                     <span class="title">Vaccine</span>
                                 </a>
                             </li>

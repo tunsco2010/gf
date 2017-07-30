@@ -27,6 +27,25 @@ class User extends Authenticatable
     protected $hidden = [
         'password', 'remember_token',
     ];
+    /**
+     * Hash password
+     * @param $input
+     */
+    public function setPasswordAttribute($input)
+    {
+        if ($input)
+            $this->attributes['password'] = app('hash')->needsRehash($input) ? Hash::make($input) : $input;
+    }
+
+
+    /**
+     * Set to null if empty
+     * @param $input
+     */
+    public function setRoleIdAttribute($input)
+    {
+        $this->attributes['role_id'] = $input ? $input : null;
+    }
 
     public function orders()
     {

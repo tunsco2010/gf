@@ -45,9 +45,7 @@ class IncomeCategoriesController extends Controller
      */
     public function store(StoreIncomeCategoriesRequest $request)
     {
-        if (! Gate::allows('income_category_create')) {
-            return abort(401);
-        }
+
         $income_category = IncomeCategory::create($request->all());
 
 
