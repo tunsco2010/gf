@@ -46,23 +46,6 @@ class ConsumptionController extends Controller
     public function store(StoreConsumptionsRequest $request)
     {
 
-//        $consumpt = Consumption::create([
-//            'user_id' => $request->user_id,
-//            'quantity' => $request->quantity,
-//            'date' => $request->date,
-//            'description' => $request->description,
-//            'stock_id' => $request->stock_id
-//        ]);
-//        $category = new Consumption;
-////
-//        $category->user_id = $request->get('name');
-//        $category->quantity = $request->get('quantity');
-//        $category->date = $request->get('date');
-//        $category->description= $request->get('description');
-//        $category->stock_id = $request->get('stock_id');
-//
-//        $consumpt->save();
-
         $consumption = Consumption::create($request->all());
 
         alert()->success('Congrats!', 'You Collected '.$request->quantity .' Bag(s) of Feed');
@@ -91,9 +74,7 @@ class ConsumptionController extends Controller
      */
     public function edit(Consumption $consumption)
     {
-        if (! Gate::allows('consumption_edit')) {
-            return abort(401);
-        }
+
         $users = \App\User::get()->pluck('name', 'id')->prepend('Please select', '');
         $stocks = \App\Feed::get()->pluck('quantity', 'id')->prepend('Please select', '');
 
